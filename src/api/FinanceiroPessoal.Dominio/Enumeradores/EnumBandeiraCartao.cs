@@ -2,5 +2,9 @@
 {
     public enum EnumBandeiraCartao
     {
+        Visa,
+        MasterCard,
+        AmericanExpress,
+        Elo
     }
 }
