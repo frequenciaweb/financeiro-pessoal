@@ -50,7 +50,7 @@
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="32" value="EMPRESTIMOS" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-                    <mxGeometry x="365" y="430" width="120" height="60" as="geometry"/>
+                    <mxGeometry x="360" y="400" width="120" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="35" style="edgeStyle=none;html=1;" edge="1" parent="1" source="34" target="8">
                     <mxGeometry relative="1" as="geometry"/>
