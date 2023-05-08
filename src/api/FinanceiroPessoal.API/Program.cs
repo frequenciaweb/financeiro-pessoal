@@ -1,13 +1,24 @@
+using FinanceiroPessoal.Infraestrutura.EF;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllers();
+
+Console.WriteLine("Conexão");
+
+string connectionString = builder.Configuration.GetConnectionString("padrao");
+builder.Services.AddDbContext<FinanceiroPessoalContext>(options => options.UseNpgsql(connectionString));
+
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

@@ -4,7 +4,10 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FinanceiroPessoal.Dominio.Entidades
 {
-    [Table("lancamento_categorias")]
+    /// <summary>
+    ///  Categoria do lançamento, saude, lazer, alimentacao...
+    /// </summary>
+    [Table("lancamento_categorias")]    
     public class CategoriaLancamento : EntidadeBase
     {
         public CategoriaLancamento(string nome, string usuarioInclusao) : base(usuarioInclusao)
