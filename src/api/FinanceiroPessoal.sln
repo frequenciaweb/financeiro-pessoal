@@ -9,19 +9,21 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Api", "Api", "{FE70F522-82B
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{2FE3426E-ABBE-4F01-9A93-0591C312174F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinanceiroPessoal.API", "FinanceiroPessoal.API\FinanceiroPessoal.API.csproj", "{9EEF2E8D-2F6B-41F6-AC3C-4A19699AE8B9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FinanceiroPessoal.API", "FinanceiroPessoal.API\FinanceiroPessoal.API.csproj", "{9EEF2E8D-2F6B-41F6-AC3C-4A19699AE8B9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinanceiroPessoal.Dominio", "FinanceiroPessoal.Dominio\FinanceiroPessoal.Dominio.csproj", "{D1DA109A-49BE-46A1-B3D0-77AF65129679}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FinanceiroPessoal.Dominio", "FinanceiroPessoal.Dominio\FinanceiroPessoal.Dominio.csproj", "{D1DA109A-49BE-46A1-B3D0-77AF65129679}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinanceiroPessoal.Infraestrutura", "FinanceiroPessoal.Infraestrutura\FinanceiroPessoal.Infraestrutura.csproj", "{D3713AE0-7A36-4070-A0B4-CA02EA50DFCD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FinanceiroPessoal.Infraestrutura", "FinanceiroPessoal.Infraestrutura\FinanceiroPessoal.Infraestrutura.csproj", "{D3713AE0-7A36-4070-A0B4-CA02EA50DFCD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinanceiroPessoal.Integracao", "FinanceiroPessoal.Integracao\FinanceiroPessoal.Integracao.csproj", "{797E2146-15C5-4AFE-8DF3-F82692BAE70E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FinanceiroPessoal.Integracao", "FinanceiroPessoal.Integracao\FinanceiroPessoal.Integracao.csproj", "{797E2146-15C5-4AFE-8DF3-F82692BAE70E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinanceiroPessoal.Teste", "FinanceiroPessoal.Teste\FinanceiroPessoal.Teste.csproj", "{9A716CAE-21FB-4A8E-AEE9-768C1E745F65}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FinanceiroPessoal.Teste", "FinanceiroPessoal.Teste\FinanceiroPessoal.Teste.csproj", "{9A716CAE-21FB-4A8E-AEE9-768C1E745F65}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{BC5DD2ED-0C68-494E-89AF-EE169A76C5E3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinanceiroPessoal.Aplicacao", "FinanceiroPessoal.Aplicacao\FinanceiroPessoal.Aplicacao.csproj", "{7C579F92-6F17-4CDC-9B5F-0931882E03A7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FinanceiroPessoal.Aplicacao", "FinanceiroPessoal.Aplicacao\FinanceiroPessoal.Aplicacao.csproj", "{7C579F92-6F17-4CDC-9B5F-0931882E03A7}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{3B2CA08C-68E9-45A1-B8FF-46A81DC68426}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -53,6 +55,10 @@ Global
 		{7C579F92-6F17-4CDC-9B5F-0931882E03A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7C579F92-6F17-4CDC-9B5F-0931882E03A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7C579F92-6F17-4CDC-9B5F-0931882E03A7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3B2CA08C-68E9-45A1-B8FF-46A81DC68426}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B2CA08C-68E9-45A1-B8FF-46A81DC68426}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B2CA08C-68E9-45A1-B8FF-46A81DC68426}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B2CA08C-68E9-45A1-B8FF-46A81DC68426}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -7,9 +7,14 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 
-Console.WriteLine("Conexão");
 
-string connectionString = builder.Configuration.GetConnectionString("padrao");
+
+string? connectionString = builder.Configuration["connection_string"]?.ToString();
+if (string.IsNullOrEmpty(connectionString))
+{
+    connectionString = builder.Configuration.GetConnectionString("padrao");
+}
+Console.WriteLine("Conection string: "+connectionString);
 builder.Services.AddDbContext<FinanceiroPessoalContext>(options => options.UseNpgsql(connectionString));
 
 
