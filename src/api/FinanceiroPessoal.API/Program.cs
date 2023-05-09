@@ -1,4 +1,6 @@
+using FinanceiroPessoal.Dominio.Contratos;
 using FinanceiroPessoal.Infraestrutura.EF;
+using FinanceiroPessoal.Infraestrutura.Repositorios;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -7,7 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 
-
+builder.Services.AddScoped<IUsuarioRepositorio, UsuarioRepositorio>();
 
 string? connectionString = builder.Configuration["connection_string"]?.ToString();
 if (string.IsNullOrEmpty(connectionString))

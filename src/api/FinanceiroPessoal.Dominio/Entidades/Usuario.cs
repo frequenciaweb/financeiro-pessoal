@@ -24,5 +24,22 @@ namespace FinanceiroPessoal.Dominio.Entidades
 
         [Column("senha"), MaxLength(255), Required]
         public string Senha { get; private set; } = default!;
+
+        /// <summary>
+        /// Metodo responsavel por alterar o valor da senha na entidade de usuário
+        /// </summary>
+        /// <param name="senhaAtual">Senha atual</param>
+        /// <param name="novaSenha">nova senha</param>
+        public void TrocarSenha(string senhaAtual, string novaSenha)
+        {
+            if (Senha == senhaAtual)
+            {
+                Senha = novaSenha;
+            }
+            else
+            {
+                IncluirAnotacaoErro("Senha digita não confere com a senha atual");
+            }
+        }
     }
 }

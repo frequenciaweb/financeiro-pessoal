@@ -5,7 +5,7 @@ namespace FinanceiroPessoal.Dominio.Util
 {
     public abstract class EntidadeBase
     {
-        public EntidadeBase(){}
+        public EntidadeBase() { }
 
         public EntidadeBase(string usuarioInclusao)
         {
@@ -64,11 +64,35 @@ namespace FinanceiroPessoal.Dominio.Util
         public string UsuarioAlteracao { get; private set; } = default!;
 
         [Column("usuario_delecao")]
-        [MaxLength(60)]        
+        [MaxLength(60)]
         public string? UsuarioDelecao { get; private set; }
 
         [Column("ativo")]
         [Required]
         public bool Ativo { get; private set; }
+
+        /// <summary>
+        /// Propriedade que indica se a entidade está valida
+        /// com base nas regras
+        /// </summary>
+        [NotMapped]        
+        public bool Valido { get { return _erros.Count == 0; } }
+
+        /// <summary>
+        /// Lista as mensagens de erro de regra de negocio e validações
+        /// </summary>
+        public IReadOnlyList<string> Erros
+        {
+            get
+            {
+                return _erros.ToList();
+            }
+        }
+        private List<string> _erros { get; set; } = new List<string>();
+
+        public void IncluirAnotacaoErro(string mensagem)
+        {
+            _erros.Add(mensagem);
+        }
     }
 }
