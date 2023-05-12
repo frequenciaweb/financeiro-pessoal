@@ -4,7 +4,7 @@
 </h4>
 
 # Resumo do Projeto
-Este é um projeto que está sendo desenvolvido durante uma mentoria de C#
+Este é um projeto de finanças pessoas, com foco em administração pessoal que está sendo desenvolvido durante uma mentoria de C#, seu backend está escrito em netCore 6.0 com frontend em Angular.
 
 # Tecnologias e Padrões
 
@@ -19,7 +19,7 @@ Este é um projeto que está sendo desenvolvido durante uma mentoria de C#
 # Variaveis de Ambiente
 - ``connection_string``
 
-# Dependências
+# Ambiente
 - ``Docker Desktop`` 
 - ``WSL 2`` 
 - ``Visual Studio 2022 ou VS Code``
