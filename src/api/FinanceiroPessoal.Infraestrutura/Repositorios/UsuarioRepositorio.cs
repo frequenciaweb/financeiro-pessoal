@@ -15,17 +15,27 @@ namespace FinanceiroPessoal.Infraestrutura.Repositorios
             return Context.Usuarios.Any(x => x.Email == usuario && x.Senha == senha); 
         }
 
-        public bool TrocarSenha(string senhaAtual, string novaSenha, Guid usuarioID)
+        public bool TrocarSenha(string senhaAtual, string novaSenha, Guid usuarioID, out string msgErro)
         {
+            msgErro = string.Empty;
             var usuario = Context.Usuarios.Find(usuarioID);
             if (usuario != null) 
             {   
                 usuario.TrocarSenha(senhaAtual, novaSenha);
-                if (usuario.Valido)
+                var resultado = usuario.Valido();
+                if (resultado)
                 {
                     Context.Usuarios.Update(usuario);
                 }
-                return usuario.Valido;
+                else
+                {
+                    msgErro = usuario.LerAnotacoesErro();
+                }
+                return resultado;
+            }
+            else
+            {
+                msgErro = "Usuário não encontrado";
             }
 
             return false;

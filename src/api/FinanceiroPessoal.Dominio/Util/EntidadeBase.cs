@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FinanceiroPessoal.Dominio.Util
 {
-    public abstract class EntidadeBase
+    public abstract class EntidadeBase : EntidadeValidacao
     {
         public EntidadeBase() { }
 
@@ -70,29 +70,5 @@ namespace FinanceiroPessoal.Dominio.Util
         [Column("ativo")]
         [Required]
         public bool Ativo { get; private set; }
-
-        /// <summary>
-        /// Propriedade que indica se a entidade está valida
-        /// com base nas regras
-        /// </summary>
-        [NotMapped]        
-        public bool Valido { get { return _erros.Count == 0; } }
-
-        /// <summary>
-        /// Lista as mensagens de erro de regra de negocio e validações
-        /// </summary>
-        public IReadOnlyList<string> Erros
-        {
-            get
-            {
-                return _erros.ToList();
-            }
-        }
-        private List<string> _erros { get; set; } = new List<string>();
-
-        public void IncluirAnotacaoErro(string mensagem)
-        {
-            _erros.Add(mensagem);
-        }
     }
 }
