@@ -1,5 +1,6 @@
 ﻿using FinanceiroPessoal.Dominio.Enumeradores;
 using FinanceiroPessoal.Dominio.Util;
+using FinanceiroPessoal.Utilitarios.Util;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -8,6 +9,24 @@ namespace FinanceiroPessoal.Dominio.Entidades
     [Table("cartao_credito")]
     public class CartaoCredito : EntidadeBase
     {
+        public CartaoCredito()
+        {
+            
+        }
+
+        public CartaoCredito(string nome, string numero, string? cvv, string validade, int vencimento, int diaMelhorCompra, decimal limite, string banco, EnumBandeiraCartao bandeira, string usuarioInclusao):base(usuarioInclusao)
+        {
+            Nome = nome;
+            Numero = numero;
+            CVV = cvv;
+            Validade = validade;
+            Vencimento = vencimento;
+            DiaMelhorCompra = diaMelhorCompra;
+            Limite = limite;
+            Banco = banco;
+            Bandeira = bandeira;
+        }
+
         /// <summary>
         ///  Nome do cartão (Way, sx, platinum, gold)
         /// </summary>
@@ -24,9 +43,9 @@ namespace FinanceiroPessoal.Dominio.Entidades
         public string? CVV { get; private set; }
 
         /// <summary>
-        ///  Data de expiração do cartão
+        ///  Data de expiração do cartão 05/2023
         /// </summary>
-        [Column("validade"), MaxLength(6)]
+        [Column("validade"), MaxLength(7)]
         public string Validade { get; private set; } = default!;
 
         /// <summary>
@@ -59,8 +78,74 @@ namespace FinanceiroPessoal.Dominio.Entidades
         [Column("bandeira"), Required]
         public EnumBandeiraCartao Bandeira { get; private set; }
 
-        private List<FaturaCartao> _faturas  = new List<FaturaCartao>();        
+        /// <summary>
+        /// Indica se o cartão já expirou
+        /// </summary>
+        [Column("expirado")]
+        public bool Expirado { get; private set; }
 
+        private List<FaturaCartao> _faturas  = new List<FaturaCartao>();
         public IReadOnlyList<FaturaCartao> Faturas => _faturas;
+
+        public override bool Valido()
+        {
+            if (string.IsNullOrEmpty(Nome))
+            {
+                IncluirAnotacaoErro("Nome deve ser preenchido");
+            }
+
+            if (Nome?.Length < 3)
+            {
+                IncluirAnotacaoErro("Nome deve conter o mínimo de 5 caracteres");
+            }
+
+            if (Nome?.Length > 20)
+            {
+                IncluirAnotacaoErro("Nome deve conter o máximo de 20 caracteres");
+            }
+
+            if (!string.IsNullOrEmpty(CVV) && CVV?.Length != 3)
+            {
+                IncluirAnotacaoErro("Código de segurança inválido");
+            }
+
+            if (!Validacoes.ValidadeCartao(Validade))
+            {
+                Expirado = true;
+                IncluirAnotacaoErro("Cartão inválido");
+            }
+
+            if (Vencimento > 31 || Vencimento <= 0) 
+            {
+                IncluirAnotacaoErro("Vencimento inválido");
+            }
+
+            if (DiaMelhorCompra > 31 || Vencimento <= 0)
+            {
+                IncluirAnotacaoErro("Vencimento inválido");
+            }
+
+            if (Limite <= 0)
+            {
+                IncluirAnotacaoErro("limite inválido");
+            }
+
+            if (string.IsNullOrEmpty(Banco) || Banco.Length > 30)
+            {
+                IncluirAnotacaoErro("Nome do banco inválido");
+            }
+
+            if (!string.IsNullOrEmpty(Banco) && Banco.Length < 3)
+            {
+                IncluirAnotacaoErro("Nome do banco inválido");
+            }
+
+            if (!Validacoes.CartaoCredito(Numero))
+            {
+                IncluirAnotacaoErro("Número de cartão inválido");
+            }
+
+            return base.Valido();
+        }
     }
 }

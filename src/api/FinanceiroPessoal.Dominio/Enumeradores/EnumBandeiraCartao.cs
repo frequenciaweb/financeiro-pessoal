@@ -5,6 +5,19 @@
         Visa,
         MasterCard,
         AmericanExpress,
-        Elo
+        Elo,
+        Amex,
+        Aura,
+        BaneseCard,
+        Cabal,
+        Diners,
+        Discover,
+        FortBrasil,
+        GrandCard,
+        Hipercard,
+        JCB,
+        PersonalCard,
+        Sorocred,
+        ValeCard
     }
 }

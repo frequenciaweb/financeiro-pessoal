@@ -16,7 +16,7 @@ namespace FinanceiroPessoal.Dominio.Entidades
             Email = email;
             Senha = senha;
 
-            if (!Validacoes.ValidarSenha(Senha))
+            if (!Validacoes.Senha(Senha))
             {
                 IncluirAnotacaoErro("Senha inválida");
             }
@@ -43,7 +43,7 @@ namespace FinanceiroPessoal.Dominio.Entidades
         public void TrocarSenha(string senhaAtual, string novaSenha)
         {
 
-            if (!Validacoes.ValidarSenha(novaSenha))
+            if (!Validacoes.Senha(novaSenha))
             {
                 IncluirAnotacaoErro("Senha inválida");
             }
@@ -82,7 +82,7 @@ namespace FinanceiroPessoal.Dominio.Entidades
                 IncluirAnotacaoErro("Nome deve conter o máximo de 60 caracteres");
             }
 
-            if (!Validacoes.ValidarEmail(Email))
+            if (!Validacoes.Email(Email))
             {
                 IncluirAnotacaoErro("E-mail inválido");
             }
