@@ -53,8 +53,8 @@ namespace FinanceiroPessoal.Utilitarios.Util
                 return false;
             }
 
-            int mes = int.Parse(vencimento.Substring(0,2));
-            int ano = int.Parse(vencimento.Substring(3, 4));           
+            int mes = vencimento.Substring(0, 2).ParaNumero();
+            int ano = vencimento.Substring(3, 4).ParaNumero();           
 
             if (ano < DateTime.Now.Year) {
                 return false;
@@ -69,6 +69,7 @@ namespace FinanceiroPessoal.Utilitarios.Util
 
         public static bool CartaoCredito(string numero)
         {
+            /// Todo: Melhorar a função de validação de número de cartão de crédito 
             if (string.IsNullOrEmpty(numero))
             {
                 return false;
