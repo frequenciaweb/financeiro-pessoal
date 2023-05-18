@@ -44,8 +44,7 @@ namespace FinanceiroPessoal.Teste.Entidades
         [TestMethod]
         public void TestarEmailCorreto()
         {
-            string email = "jose_do_teste@exemplo.com";
-
+            
             var Usuario = new Usuario("",
               "jose_do_teste@exemplo.com",
               "123456", "automatico");
@@ -54,9 +53,7 @@ namespace FinanceiroPessoal.Teste.Entidades
 
         [TestMethod]
         public void TestarEmaileErradoSemArroba()
-        {
-            string email = "jose_do_testeexemplo.com";
-
+        {            
             var Usuario = new Usuario("",
               "jose_do_teste@exemplo.com",
               "123456", "automatico");

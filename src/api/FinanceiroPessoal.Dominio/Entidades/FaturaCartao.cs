@@ -25,7 +25,7 @@ namespace FinanceiroPessoal.Dominio.Entidades
         [Column("situacao")]
         public EnumSituacaoPagamentoFatura Situacao { get; private set; }
 
-        public Lancamento Lancamento { get; private set; }
+        public Lancamento Lancamento { get; private set; } = default!;
 
         [Column("lancamento_id"), ForeignKey("Lancamento")]
         public Guid LancamentoID {get; private set; }
