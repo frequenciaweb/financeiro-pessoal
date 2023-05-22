@@ -1,4 +1,5 @@
 using FinanceiroPessoal.Dominio.Contratos;
+using FinanceiroPessoal.Dominio.Entidades;
 using FinanceiroPessoal.Infraestrutura.EF;
 using FinanceiroPessoal.Infraestrutura.Repositorios;
 using Microsoft.EntityFrameworkCore;

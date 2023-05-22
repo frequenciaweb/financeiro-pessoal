@@ -18,7 +18,7 @@ namespace FinanceiroPessoal.Infraestrutura.Repositorios
         public bool TrocarSenha(string senhaAtual, string novaSenha, Guid usuarioID, out string msgErro)
         {
             msgErro = string.Empty;
-            var usuario = Context.Usuarios.Find(usuarioID);
+            var usuario = Context.Usuarios.FirstOrDefault(x => x.ID == usuarioID && !x.Deletado);
             if (usuario != null) 
             {   
                 usuario.TrocarSenha(senhaAtual, novaSenha);

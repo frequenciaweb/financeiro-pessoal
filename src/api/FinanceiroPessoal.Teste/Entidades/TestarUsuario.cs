@@ -38,7 +38,7 @@ namespace FinanceiroPessoal.Teste.Entidades
             var Usuario = new Usuario("",
                 "jocom",
                 "Ab12#4", "automatico");
-            Assert.IsTrue(!Usuario.Valido() && Usuario.LerAnotacoesErro().Contains("Nome deve ser preenchido"));
+            Assert.IsTrue(!Usuario.Valido() && Usuario.LerAnotacoesErro().Contains("Nome de usuário deve ser preenchido"));
         }
 
         [TestMethod]

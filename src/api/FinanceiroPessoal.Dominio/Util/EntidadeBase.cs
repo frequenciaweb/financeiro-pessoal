@@ -34,7 +34,7 @@ namespace FinanceiroPessoal.Dominio.Util
         }
 
         [Column("id")]
-        public Guid ID { get; private set; }
+        public Guid ID { get; private set; }       
 
         [Column("criado_em")]
         [Required]
@@ -70,5 +70,17 @@ namespace FinanceiroPessoal.Dominio.Util
         [Column("ativo")]
         [Required]
         public bool Ativo { get; private set; }
+
+        public void DeletarRegistroLogico()
+        {
+            Deletado = true;
+            DeletadoEm = DateTime.Now;    
+        }
+
+        public void RemoverDeletado()
+        {
+            Deletado = false;
+            DeletadoEm = null;
+        }
     }
 }

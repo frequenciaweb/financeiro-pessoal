@@ -45,7 +45,7 @@ namespace FinanceiroPessoal.Dominio.Entidades
 
             if (!Validacoes.Senha(novaSenha))
             {
-                IncluirAnotacaoErro("Senha inválida");
+                IncluirAnotacaoErro("Senha inválida");               
             }
             else
             {
@@ -69,7 +69,7 @@ namespace FinanceiroPessoal.Dominio.Entidades
 
             if (string.IsNullOrEmpty(Nome))
             {
-                IncluirAnotacaoErro("Nome deve ser preenchido");
+                IncluirAnotacaoErro("Nome de usuário deve ser preenchido");
             }
 
             if (Nome?.Length < 10)
@@ -88,6 +88,18 @@ namespace FinanceiroPessoal.Dominio.Entidades
             }
 
             return base.Valido();
+        }
+
+        public void TrocarNome(string nome)
+        {
+            Nome = nome.Trim().ToUpper();
+            Valido();
+        }
+
+        public void TrocarEmail(string email)
+        {
+            Email = email;
+            Valido();
         }
     }
 }
