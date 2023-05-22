@@ -12,7 +12,7 @@ namespace FinanceiroPessoal.Infraestrutura.Repositorios
 
         public bool Logar(string usuario, string senha)
         {
-            return Context.Usuarios.Any(x => x.Email == usuario && x.Senha == senha); 
+            return Context.Usuarios.Any(x => x.Email == usuario && x.Senha == senha && !x.Deletado); 
         }
 
         public bool TrocarSenha(string senhaAtual, string novaSenha, Guid usuarioID, out string msgErro)
