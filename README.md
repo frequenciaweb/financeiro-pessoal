@@ -21,7 +21,8 @@ Este é um projeto de finanças pessoas, com foco em administração pessoal que
 
 # Ambiente
 - ``Docker Desktop`` 
-- ``WSL 2`` 
+- ``WSL 2``  
+    https://learn.microsoft.com/en-us/windows/wsl/install
 - ``Visual Studio 2022 ou VS Code``
 
 # Executar Projeto
