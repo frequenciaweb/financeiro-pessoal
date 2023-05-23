@@ -10,8 +10,17 @@ namespace FinanceiroPessoal.Dominio.Entidades
     {
         public Usuario(){}
 
+        public Usuario(Guid id, string nome, string email, string senha, string usuarioInclusao) : base(id, usuarioInclusao)
+        {            
+            GerarUsuario(id, nome, email, senha);
+        }
         public Usuario(string nome, string email, string senha, string usuarioInclusao):base(usuarioInclusao) 
         {
+            GerarUsuario(Guid.NewGuid(), nome, email, senha);
+        }
+
+        private void GerarUsuario(Guid id, string nome, string email, string senha)
+        {           
             Nome = nome;
             Email = email;
             Senha = senha;
@@ -40,12 +49,14 @@ namespace FinanceiroPessoal.Dominio.Entidades
         /// </summary>
         /// <param name="senhaAtual">Senha atual</param>
         /// <param name="novaSenha">nova senha</param>
-        public void TrocarSenha(string senhaAtual, string novaSenha)
+        public (bool resultado, string msgErro) TrocarSenha(string senhaAtual, string novaSenha )
         {
-
+            string mensagem = "";
             if (!Validacoes.Senha(novaSenha))
             {
-                IncluirAnotacaoErro("Senha inválida");               
+                mensagem = "Senha inválida";
+                IncluirAnotacaoErro(mensagem);
+                return (false, mensagem);
             }
             else
             {
@@ -57,10 +68,13 @@ namespace FinanceiroPessoal.Dominio.Entidades
             if (Senha == senhaAtual)
             {
                 Senha = novaSenha;
+                return (true, string.Empty);
             }
             else
             {
-                IncluirAnotacaoErro("Senha digitada não confere com a senha atual");
+                mensagem = "Senha digitada não confere com a senha atual";
+                IncluirAnotacaoErro(mensagem);
+                return (false, mensagem);
             }
         }
 

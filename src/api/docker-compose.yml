@@ -17,3 +17,5 @@ services:
       dockerfile: FinanceiroPessoal.API/Dockerfile
     environment:
        connection_string: "User ID=postgres;Password=&Fin@nceiroPesso@l2023;Host=bd_financeiro_pessoal;Port=5432;Database=financeiro_pessoal;Pooling=true;"
+       DROP_DATA_BASE: 1
+       POPULAR_DATA_BASE: 1

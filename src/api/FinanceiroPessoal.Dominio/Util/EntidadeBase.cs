@@ -7,19 +7,7 @@ namespace FinanceiroPessoal.Dominio.Util
     {
         public EntidadeBase() { }
 
-        public EntidadeBase(string usuarioInclusao)
-        {
-            ID = Guid.NewGuid();
-            CriadoEm = DateTime.Now;
-            AtualizadoEm = null;
-            DeletadoEm = null;
-            Deletado = false;
-            Atualizado = false;
-            UsuarioInclusao = usuarioInclusao;
-            Ativo = true;
-        }
-
-        protected EntidadeBase(Guid id, DateTime criadoEm, DateTime? atualizadoEm, DateTime? deletadoEm, bool deletado, bool atualizado, string usuarioInclusao, string usuarioAlteracao, string? usuarioDelecao, bool ativo)
+        private void GerarRegistro(Guid id, DateTime criadoEm, DateTime? atualizadoEm, DateTime? deletadoEm, bool deletado, bool atualizado, string usuarioInclusao, string? usuarioAlteracao, string? usuarioDelecao, bool ativo)
         {
             ID = id;
             CriadoEm = criadoEm;
@@ -33,8 +21,51 @@ namespace FinanceiroPessoal.Dominio.Util
             Ativo = ativo;
         }
 
+        public EntidadeBase(Guid id, string usuarioInclusao)
+        {
+            GerarRegistro(id,
+                criadoEm: DateTime.Now,
+                atualizadoEm: null,
+                deletadoEm: null,
+                deletado: false,
+                atualizado: false,
+                usuarioInclusao: usuarioInclusao,
+                usuarioAlteracao: null,
+                usuarioDelecao: null,
+                ativo: true);
+        }
+
+        public EntidadeBase(string usuarioInclusao)
+        {
+            GerarRegistro(Guid.NewGuid(),
+               criadoEm: DateTime.Now,
+               atualizadoEm: null,
+               deletadoEm: null,
+               deletado: false,
+               atualizado: false,
+               usuarioInclusao: usuarioInclusao,
+               usuarioAlteracao: null,
+               usuarioDelecao: null,
+               ativo: true);
+        }
+
+        protected EntidadeBase(Guid id, DateTime criadoEm, DateTime? atualizadoEm, DateTime? deletadoEm,
+            bool deletado, bool atualizado, string usuarioInclusao, string usuarioAlteracao, string? usuarioDelecao, bool ativo)
+        {
+            GerarRegistro(id,
+                 criadoEm: criadoEm,
+                 atualizadoEm: atualizadoEm,
+                 deletadoEm: deletadoEm,
+                 deletado: deletado,
+                 atualizado: atualizado,
+                 usuarioInclusao: usuarioInclusao,
+                 usuarioAlteracao: usuarioAlteracao,
+                 usuarioDelecao: usuarioDelecao,
+                 ativo: ativo);
+        }
+
         [Column("id")]
-        public Guid ID { get; private set; }       
+        public Guid ID { get; private set; }
 
         [Column("criado_em")]
         [Required]
@@ -61,7 +92,7 @@ namespace FinanceiroPessoal.Dominio.Util
 
         [Column("usuario_alteracao")]
         [MaxLength(60)]
-        public string UsuarioAlteracao { get; private set; } = default!;
+        public string? UsuarioAlteracao { get; private set; } = default!;
 
         [Column("usuario_delecao")]
         [MaxLength(60)]
@@ -71,10 +102,24 @@ namespace FinanceiroPessoal.Dominio.Util
         [Required]
         public bool Ativo { get; private set; }
 
+        public void IncluirInformacoesAlteracao(string usuario)
+        {
+            if (string.IsNullOrWhiteSpace(usuario))
+            {
+                IncluirAnotacaoErro("Usuário de alteração não foi informado");
+            }
+            else
+            {
+                UsuarioAlteracao = usuario;
+                Atualizado = true;
+                AtualizadoEm = DateTime.Now;
+            }
+        }
+
         public void DeletarRegistroLogico()
         {
             Deletado = true;
-            DeletadoEm = DateTime.Now;    
+            DeletadoEm = DateTime.Now;
         }
 
         public void RemoverDeletado()

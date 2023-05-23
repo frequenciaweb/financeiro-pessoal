@@ -33,6 +33,29 @@ namespace FinanceiroPessoal.Dominio.Entidades
         [Column("nome"), MaxLength(20), Required]
         public string Nome { get; private set; } = default!;
 
+        public void Alterar(string nome, 
+            string numero,
+            string cvv,
+            string validade,
+            int vencimento, 
+            int diaMelhorCompra,
+            EnumBandeiraCartao bandeira,
+            decimal limite,
+            string banco, string usuarioAlteracao)
+        {
+            Nome = nome.Trim().ToLower();
+            Numero = numero.Trim().ToLower();
+            CVV = cvv.Trim().ToLower();
+            Validade = validade.Trim().ToLower();
+            Vencimento = vencimento;
+            DiaMelhorCompra = diaMelhorCompra;
+            Banco = banco.Trim().ToLower();
+            Bandeira = bandeira;            
+            Limite = limite;
+            IncluirInformacoesAlteracao(usuarioAlteracao);
+            Valido();
+        }
+
         /// <summary>
         ///  Número do Cartão
         /// </summary>
@@ -115,12 +138,12 @@ namespace FinanceiroPessoal.Dominio.Entidades
                 IncluirAnotacaoErro("Cartão inválido");
             }
 
-            if (Vencimento > 31 || Vencimento <= 0) 
+            if (Vencimento <= 0 || Vencimento > 31 ) 
             {
                 IncluirAnotacaoErro("Vencimento inválido");
             }
 
-            if (DiaMelhorCompra > 31 || Vencimento <= 0)
+            if (Vencimento <= 0 || DiaMelhorCompra > 31)
             {
                 IncluirAnotacaoErro("Vencimento inválido");
             }
