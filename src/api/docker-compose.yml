@@ -2,19 +2,22 @@ version: '3.4'
 
 services:
   banco_postgres: 
-    image: postgres:14.7
+    image: postgres:latest
     hostname: bd_financeiro_pessoal
     restart: always
     ports:
         - 5432:5432
     environment:
+        POSTGRES_USER: "postgres"
         POSTGRES_PASSWORD: "&Fin@nceiroPesso@l2023"
+        POSTGRES_DB: "financeiro_pessoal"
       
   financeiropessoal.api:
     image: ${DOCKER_REGISTRY-}financeiropessoalapi
     build:
       context: .
-      dockerfile: FinanceiroPessoal.API/Dockerfile
+      dockerfile: FinanceiroPessoal.API/Dockerfile 
+    restart: always
     environment:
        connection_string: "User ID=postgres;Password=&Fin@nceiroPesso@l2023;Host=bd_financeiro_pessoal;Port=5432;Database=financeiro_pessoal;Pooling=true;"
        DROP_DATA_BASE: 1

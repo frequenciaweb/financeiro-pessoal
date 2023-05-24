@@ -5,59 +5,65 @@ namespace FinanceiroPessoal.API
 {
     public static class Startup
     {
-        public static void ConfigurarConexaoBanco(this IServiceCollection services, IConfiguration config)
+        private static string ObterConnectionString(IConfiguration config)
         {
             string? connectionString = config["connection_string"]?.ToString();
-            Thread.Sleep(10000);
             if (string.IsNullOrEmpty(connectionString))
             {
-                connectionString = config.GetConnectionString("padrao");
+                Console.WriteLine("Conection string: " + connectionString);
+                return config.GetConnectionString("padrao");
             }
+            Console.WriteLine("Aguardar 10 segundos");
+            Thread.Sleep(10000);
             Console.WriteLine("Conection string: " + connectionString);
-            services.AddDbContext<FinanceiroPessoalContext>(options => options.UseNpgsql(connectionString));
+            return connectionString;
+        }
 
+        public static void ConfigurarConexaoBanco(this IServiceCollection services, IConfiguration config)
+        {
+            var connectionString = ObterConnectionString(config);
+            services.AddDbContext<FinanceiroPessoalContext>(options => options.UseNpgsql(connectionString));
         }
 
         public static void IniciarBancoDeDados(this WebApplication app, IConfiguration config)
         {
             try
             {
-                using (IServiceScope scope = app.Services.CreateScope())
+                DbContextOptionsBuilder<FinanceiroPessoalContext> dbContextOptions = new DbContextOptionsBuilder<FinanceiroPessoalContext>();
+                string connectionString = ObterConnectionString(config);
+                dbContextOptions.UseNpgsql(connectionString);
+                FinanceiroPessoalContext context = new FinanceiroPessoalContext(dbContextOptions.Options);
+                try
                 {
-                    IServiceProvider services = scope.ServiceProvider;
-                    FinanceiroPessoalContext context = services.GetRequiredService<FinanceiroPessoalContext>();
-                    try
+                    context.ChangeTracker
+                   .Entries()
+                   .ToList()
+                   .ForEach(e => e.State = EntityState.Detached);
+
+                    if (config["DROP_DATA_BASE"] != null && int.Parse(config["DROP_DATA_BASE"]) == 1)
                     {
-
-                        context.ChangeTracker
-                       .Entries()
-                       .ToList()
-                       .ForEach(e => e.State = EntityState.Detached);
-
-                        if (config["DROP_DATA_BASE"] != null && int.Parse(config["DROP_DATA_BASE"]) == 1)
+                        if (app.Environment.IsDevelopment())
                         {
-                            if (app.Environment.IsDevelopment())
-                            {
-                                context.Database.EnsureDeleted();//em desenvolvimento dropar sempre o banco
-                            }
+                            context.Database.EnsureDeleted();//em desenvolvimento dropar sempre o banco
                         }
-
-                        if (context.Database.EnsureCreated())
-                        {
-                            context.Database.Migrate();
-                        }
-
                     }
-                    catch (Exception ex)
+
+                    if (context.Database.EnsureCreated())
                     {
-                        //logger.LogError(ex, "An error occurred creating the DB.");
+                        context.Database.Migrate();
                     }
 
-                    if (config["POPULAR_DATA_BASE"] != null && int.Parse(config["POPULAR_DATA_BASE"]) == 1)
-                    {
-                        SEED.Popular(context);
-                    }
                 }
+                catch (Exception ex)
+                {
+                    //logger.LogError(ex, "An error occurred creating the DB.");
+                }
+
+                if (config["POPULAR_DATA_BASE"] != null && int.Parse(config["POPULAR_DATA_BASE"]) == 1)
+                {
+                    SEED.Popular(context);
+                }
+
             }
             catch (Exception ex)
             {

@@ -18,6 +18,8 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
+AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
+
 app.IniciarBancoDeDados(builder.Configuration);
 
 // Configure the HTTP request pipeline.

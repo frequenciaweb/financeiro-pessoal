@@ -19,7 +19,7 @@ namespace FinanceiroPessoal.Infraestrutura.EF
             
         }
 
-        protected FinanceiroPessoalContext(DbContextOptions<FinanceiroPessoalContext> dbcontext)
+        public FinanceiroPessoalContext(DbContextOptions<FinanceiroPessoalContext> dbcontext)
             : base(dbcontext)
         {
         }
