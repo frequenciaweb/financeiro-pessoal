@@ -3,3 +3,6 @@
 ################################################################################
 
 /src/frontend/.vscode
+/src/api/FinanceiroPessoal.API/financeiro_pessoal.db-wal
+/src/api/FinanceiroPessoal.API/financeiro_pessoal.db-shm
+/src/api/FinanceiroPessoal.API/financeiro_pessoal.db
