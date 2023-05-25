@@ -1,17 +1,26 @@
 ﻿using FinanceiroPessoal.Dominio.Entidades;
+using FinanceiroPessoal.Infraestrutura.EF;
+using FinanceiroPessoal.Teste.Comum;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 namespace FinanceiroPessoal.Teste.Entidades
 {
     [TestClass]
-    public class TestarUsuario
+    public class TestarUsuario : TesteBase
     {
+
         [TestMethod]
         public void TestarUsuarioComSucesso()
         {
             var Usuario = new Usuario("PAULO ROBERTO", 
                 "jose_do_teste@exemplo.com",
-                "Ab12#456", "automatico");            
+                "Ab12#456", "automatico");   
             Assert.IsTrue(Usuario.Valido());
+
+            Context.Usuarios.Add(Usuario);
+            Assert.IsTrue(Context.SaveChanges() > 0);
+
         }
 
         [TestMethod]

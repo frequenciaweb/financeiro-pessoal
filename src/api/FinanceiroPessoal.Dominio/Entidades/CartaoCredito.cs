@@ -14,7 +14,7 @@ namespace FinanceiroPessoal.Dominio.Entidades
             
         }
 
-        public CartaoCredito(string nome, string numero, string? cvv, string validade, int vencimento, int diaMelhorCompra, decimal limite, string banco, EnumBandeiraCartao bandeira, string usuarioInclusao):base(usuarioInclusao)
+        public CartaoCredito(string nome, string numero, string? cvv, string validade, int vencimento, int diaMelhorCompra, decimal limite, string banco, EnumBandeiraCartao bandeira,Guid donoCartaoUsuarioID, string usuarioInclusao):base(usuarioInclusao)
         {
             Nome = nome;
             Numero = numero;
@@ -25,6 +25,7 @@ namespace FinanceiroPessoal.Dominio.Entidades
             Limite = limite;
             Banco = banco;
             Bandeira = bandeira;
+            UsuarioID = donoCartaoUsuarioID;
         }
 
         /// <summary>
@@ -41,7 +42,9 @@ namespace FinanceiroPessoal.Dominio.Entidades
             int diaMelhorCompra,
             EnumBandeiraCartao bandeira,
             decimal limite,
-            string banco, string usuarioAlteracao)
+            string banco, 
+            Guid donoCartaoUsuarioID,
+            string usuarioAlteracao)
         {
             Nome = nome.Trim().ToLower();
             Numero = numero.Trim().ToLower();
@@ -52,6 +55,7 @@ namespace FinanceiroPessoal.Dominio.Entidades
             Banco = banco.Trim().ToLower();
             Bandeira = bandeira;            
             Limite = limite;
+            UsuarioID = donoCartaoUsuarioID;
             IncluirInformacoesAlteracao(usuarioAlteracao);
             Valido();
         }
@@ -106,6 +110,15 @@ namespace FinanceiroPessoal.Dominio.Entidades
         /// </summary>
         [Column("expirado")]
         public bool Expirado { get; private set; }
+
+        /// <summary>
+        ///  Usuario dono do cartão
+        /// </summary>
+        [Column(name: "usuario_id")]
+        [ForeignKey("Usuario")]
+        public Guid UsuarioID { get; private set; }
+
+        public Usuario Usuario { get; private set; } = default!;
 
         private List<FaturaCartao> _faturas  = new List<FaturaCartao>();
         public IReadOnlyList<FaturaCartao> Faturas => _faturas;

@@ -23,6 +23,7 @@ namespace FinanceiroPessoal.Infraestrutura.EF
                     limite: 500,
                     banco: "SANTANDER",
                     bandeira: Dominio.Enumeradores.EnumBandeiraCartao.Hipercard,
+                    donoCartaoUsuarioID: Guid.Parse("eb0b8c09-e93b-44b3-a68a-4c27bce54b2a"),
                     usuarioInclusao: "migrations");
 
                 context.Cartoes.Add(cartao);

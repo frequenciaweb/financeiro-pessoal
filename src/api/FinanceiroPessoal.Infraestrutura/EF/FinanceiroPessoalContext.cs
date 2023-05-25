@@ -29,11 +29,20 @@ namespace FinanceiroPessoal.Infraestrutura.EF
             if (!optionsBuilder.IsConfigured)
             {   
                 IConfigurationBuilder builder = new ConfigurationBuilder()
-               .AddJsonFile("appsettings.json");
+               .AddJsonFile(path: "appsettings.json");
                 IConfiguration _config = builder.Build();
 
+                bool sqlite = _config["USE_SQLITE"]?.ToString() == "True";
+
                 string connectionString = _config.GetConnectionString("padrao");
-                optionsBuilder.UseNpgsql(connectionString);
+                if (sqlite)
+                {   
+                    optionsBuilder.UseSqlite(connectionString);
+                }
+                else
+                {   
+                    optionsBuilder.UseNpgsql(connectionString);
+                }
             }
         }
 

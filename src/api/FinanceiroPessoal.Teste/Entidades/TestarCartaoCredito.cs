@@ -1,20 +1,24 @@
 ﻿using FinanceiroPessoal.Dominio.Entidades;
 using FinanceiroPessoal.Dominio.Enumeradores;
+using FinanceiroPessoal.Teste.Comum;
 using FinanceiroPessoal.Utilitarios.Util;
 using System.ComponentModel;
 
 namespace FinanceiroPessoal.Teste.Entidades
 {
     [TestClass]
-    public class TestarCartaoCredito
+    public class TestarCartaoCredito : TesteBase
     {
         [TestMethod]
         public void TestarCartaoValido()
         {
             string validade = $"{DateTime.Now.Month.ToString().PadLeft(2, '0')}/{DateTime.Now.AddYears(1).Year}";
-            var cartao = new CartaoCredito("WAY", "343543285186412", "123", validade, 10, 5, 100, "ITAU", EnumBandeiraCartao.AmericanExpress, "sistema");
-
+            var cartao = new CartaoCredito("WAY", "343543285186412", "123", validade, 10, 5, 100, "ITAU", EnumBandeiraCartao.AmericanExpress, donoCartaoUsuarioID: Guid.Parse("eb0b8c09-e93b-44b3-a68a-4c27bce54b2a"),"sistema");
             Assert.IsTrue(cartao.Valido());
+
+            Context.Cartoes.Add(cartao);
+            Assert.IsTrue(Context.SaveChanges() > 0);
+
         }
 
         [DataTestMethod]

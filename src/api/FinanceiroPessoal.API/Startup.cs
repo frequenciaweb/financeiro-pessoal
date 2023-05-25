@@ -11,7 +11,10 @@ namespace FinanceiroPessoal.API
             if (string.IsNullOrEmpty(connectionString))
             {
                 Console.WriteLine("Conection string: " + connectionString);
-                return config.GetConnectionString("padrao");
+
+                bool sqlite = config["USE_SQLITE"]?.ToString() == "True";
+
+                return config.GetConnectionString(sqlite ? "sqlite": "padrao");
             }
             Console.WriteLine("Aguardar 10 segundos");
             Thread.Sleep(10000);
@@ -22,7 +25,17 @@ namespace FinanceiroPessoal.API
         public static void ConfigurarConexaoBanco(this IServiceCollection services, IConfiguration config)
         {
             var connectionString = ObterConnectionString(config);
-            services.AddDbContext<FinanceiroPessoalContext>(options => options.UseNpgsql(connectionString));
+
+            bool sqlite = config["USE_SQLITE"]?.ToString() == "True";
+
+            if (sqlite)
+            {
+                services.AddDbContext<FinanceiroPessoalContext>(options => options.UseSqlite(connectionString));
+            }
+            else
+            {
+                services.AddDbContext<FinanceiroPessoalContext>(options => options.UseNpgsql(connectionString));
+            }
         }
 
         public static void IniciarBancoDeDados(this WebApplication app, IConfiguration config)
@@ -31,7 +44,19 @@ namespace FinanceiroPessoal.API
             {
                 DbContextOptionsBuilder<FinanceiroPessoalContext> dbContextOptions = new DbContextOptionsBuilder<FinanceiroPessoalContext>();
                 string connectionString = ObterConnectionString(config);
-                dbContextOptions.UseNpgsql(connectionString);
+
+                bool sqlite = config["USE_SQLITE"]?.ToString() == "True";
+
+                if (sqlite)
+                {
+                    dbContextOptions.UseSqlite(connectionString);
+                }
+                else
+                {
+                    dbContextOptions.UseNpgsql(connectionString);
+                }
+
+               
                 FinanceiroPessoalContext context = new FinanceiroPessoalContext(dbContextOptions.Options);
                 try
                 {
