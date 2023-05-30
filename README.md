@@ -4,7 +4,7 @@
 </h4>
 
 # Resumo do Projeto
-Este é um projeto de finanças pessoas, com foco em administração pessoal que está sendo desenvolvido durante uma mentoria de C#, seu backend está escrito em netCore 6.0 com frontend em Angular.
+Este é um projeto de finanças pessoais, com foco em administração pessoal que está sendo desenvolvido durante uma mentoria de C#, seu backend está escrito em netCore 6.0 com frontend em Angular.
 
 # Tecnologias e Padrões
 
