@@ -13,9 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FinanceiroPessoal.API", "Fi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FinanceiroPessoal.Dominio", "FinanceiroPessoal.Dominio\FinanceiroPessoal.Dominio.csproj", "{D1DA109A-49BE-46A1-B3D0-77AF65129679}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FinanceiroPessoal.Infraestrutura", "FinanceiroPessoal.Infraestrutura\FinanceiroPessoal.Infraestrutura.csproj", "{D3713AE0-7A36-4070-A0B4-CA02EA50DFCD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FinanceiroPessoal.Infraestrutura.Dados", "FinanceiroPessoal.Infraestrutura\FinanceiroPessoal.Infraestrutura.Dados.csproj", "{D3713AE0-7A36-4070-A0B4-CA02EA50DFCD}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FinanceiroPessoal.Integracao", "FinanceiroPessoal.Integracao\FinanceiroPessoal.Integracao.csproj", "{797E2146-15C5-4AFE-8DF3-F82692BAE70E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FinanceiroPessoal.Infraestrutura.Integracao", "FinanceiroPessoal.Integracao\FinanceiroPessoal.Infraestrutura.Integracao.csproj", "{797E2146-15C5-4AFE-8DF3-F82692BAE70E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FinanceiroPessoal.Teste", "FinanceiroPessoal.Teste\FinanceiroPessoal.Teste.csproj", "{9A716CAE-21FB-4A8E-AEE9-768C1E745F65}"
 EndProject
@@ -25,7 +25,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FinanceiroPessoal.Aplicacao
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{3B2CA08C-68E9-45A1-B8FF-46A81DC68426}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinanceiroPessoal.Utilitarios", "FinanceiroPessoal.Utilitarios\FinanceiroPessoal.Utilitarios.csproj", "{BB83AC1B-30CD-40B5-9B8B-FA10694FB8B8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FinanceiroPessoal.Utilitarios", "FinanceiroPessoal.Utilitarios\FinanceiroPessoal.Utilitarios.csproj", "{BB83AC1B-30CD-40B5-9B8B-FA10694FB8B8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

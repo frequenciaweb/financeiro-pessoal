@@ -11,11 +11,21 @@ namespace FinanceiroPessoal.Teste.Entidades
     {
 
         [TestMethod]
+        public void TestarUsuarioInclusao()
+        {
+            var Usuario = new Usuario("PAULO ROBERTO",
+                "jose_do_teste@exemplo.com",
+                "Ab12#456", usuarioInclusao: "");
+            Assert.IsTrue(!Usuario.Valido() && Usuario.LerAnotacoesErro().Contains("Usuário da operação deve ser informado"));
+
+        }
+
+        [TestMethod]
         public void TestarUsuarioComSucesso()
         {
             var Usuario = new Usuario("PAULO ROBERTO", 
                 "jose_do_teste@exemplo.com",
-                "Ab12#456", "automatico");   
+                "Ab12#456", usuarioInclusao: "automatico");   
             Assert.IsTrue(Usuario.Valido());
 
             Context.Usuarios.Add(Usuario);

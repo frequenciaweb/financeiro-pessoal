@@ -1,6 +1,5 @@
 ﻿using FinanceiroPessoal.Dominio.Enumeradores;
 using FinanceiroPessoal.Dominio.Util;
-using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FinanceiroPessoal.Dominio.Entidades
@@ -8,9 +7,10 @@ namespace FinanceiroPessoal.Dominio.Entidades
     [Table("cartao_credito_fatura")]
     public class FaturaCartao : EntidadeBase
     {
-        public FaturaCartao(decimal valor, Guid cartaoCreditoID, string usuarioInclusao) : base(usuarioInclusao)
+        public FaturaCartao(decimal valor, Guid cartaoCreditoID,Guid lancamentoID, string usuarioInclusao) : base(usuarioInclusao)
         {
             CartaoCreditoID = cartaoCreditoID;
+            LancamentoID = lancamentoID;
             Valor = valor;
         }
 
@@ -29,5 +29,15 @@ namespace FinanceiroPessoal.Dominio.Entidades
 
         [Column("lancamento_id"), ForeignKey("Lancamento")]
         public Guid LancamentoID {get; private set; }
+
+        public override bool Valido()
+        {
+            if (Valor <= 0)
+            {
+                IncluirAnotacaoErro("Valor da fatura deve ser especificado corretamente");
+            }
+
+            return base.Valido();
+        }
     }
 }

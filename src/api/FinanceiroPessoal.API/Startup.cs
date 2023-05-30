@@ -64,12 +64,12 @@ namespace FinanceiroPessoal.API
                    .Entries()
                    .ToList()
                    .ForEach(e => e.State = EntityState.Detached);
-
+                                        
                     if (config["DROP_DATA_BASE"] != null && int.Parse(config["DROP_DATA_BASE"]) == 1)
                     {
                         if (app.Environment.IsDevelopment())
                         {
-                            context.Database.EnsureDeleted();//em desenvolvimento dropar sempre o banco
+                            context.Database.EnsureDeleted();//em desenvolvimento dropar sempre o banco                            
                         }
                     }
 
@@ -79,7 +79,7 @@ namespace FinanceiroPessoal.API
                     }
 
                 }
-                catch (Exception ex)
+                catch
                 {
                     //logger.LogError(ex, "An error occurred creating the DB.");
                 }

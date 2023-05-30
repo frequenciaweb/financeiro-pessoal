@@ -14,7 +14,7 @@ namespace FinanceiroPessoal.Dominio.Entidades
             
         }
 
-        public CartaoCredito(string nome, string numero, string? cvv, string validade, int vencimento, int diaMelhorCompra, decimal limite, string banco, EnumBandeiraCartao bandeira,Guid donoCartaoUsuarioID, string usuarioInclusao):base(usuarioInclusao)
+        private void Registro(string nome, string numero, string? cvv, string validade, int vencimento, int diaMelhorCompra, decimal limite, string banco, EnumBandeiraCartao bandeira, Guid donoCartaoUsuarioID)
         {
             Nome = nome;
             Numero = numero;
@@ -26,6 +26,15 @@ namespace FinanceiroPessoal.Dominio.Entidades
             Banco = banco;
             Bandeira = bandeira;
             UsuarioID = donoCartaoUsuarioID;
+        }
+
+        public CartaoCredito(Guid id, string nome, string numero, string? cvv, string validade, int vencimento, int diaMelhorCompra, decimal limite, string banco, EnumBandeiraCartao bandeira,Guid donoCartaoUsuarioID, string usuarioInclusao):base(id,usuarioInclusao)
+        {
+            Registro( nome,  numero,   cvv,  validade, vencimento,  diaMelhorCompra,  limite,  banco,  bandeira,  donoCartaoUsuarioID);
+        }
+        public CartaoCredito(string nome, string numero, string? cvv, string validade, int vencimento, int diaMelhorCompra, decimal limite, string banco, EnumBandeiraCartao bandeira,Guid donoCartaoUsuarioID, string usuarioInclusao):base(usuarioInclusao)
+        {
+            Registro(nome, numero, cvv, validade, vencimento, diaMelhorCompra, limite, banco, bandeira, donoCartaoUsuarioID);
         }
 
         /// <summary>

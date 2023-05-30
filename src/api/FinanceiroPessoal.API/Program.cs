@@ -1,5 +1,6 @@
 using FinanceiroPessoal.API;
 using FinanceiroPessoal.Dominio.Contratos;
+using FinanceiroPessoal.Infraestrutura.Dados.Repositorios;
 using FinanceiroPessoal.Infraestrutura.Repositorios;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,6 +10,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 
 builder.Services.AddScoped<IUsuarioRepositorio, UsuarioRepositorio>();
+builder.Services.AddScoped<ICategoriaLancamentoRepositorio, CategoriaLancamentoRepositorio>();
+builder.Services.AddScoped<ICartaoCreditoRepositorio, CartaoCreditoRepositorio>();
 
 builder.Services.ConfigurarConexaoBanco(builder.Configuration);
 

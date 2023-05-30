@@ -19,6 +19,22 @@ namespace FinanceiroPessoal.Dominio.Util
             UsuarioAlteracao = usuarioAlteracao;
             UsuarioDelecao = usuarioDelecao;
             Ativo = ativo;
+
+            if (string.IsNullOrWhiteSpace(usuarioInclusao))
+            {
+                IncluirAnotacaoErro("Usuário da operação deve ser informado");
+            }
+
+            if (!string.IsNullOrWhiteSpace(usuarioInclusao) && usuarioInclusao.Length > 60)
+            {
+                IncluirAnotacaoErro("Nome do usuário da operação não pode ser maior que 60 caracteres");
+            }
+
+            if (!string.IsNullOrWhiteSpace(usuarioInclusao) && usuarioInclusao.Length < 10)
+            {
+                IncluirAnotacaoErro("Nome do usuário da operação não pode ser menor que 10 caracteres");
+            }
+
         }
 
         public EntidadeBase(Guid id, string usuarioInclusao)
@@ -104,6 +120,17 @@ namespace FinanceiroPessoal.Dominio.Util
 
         public void IncluirInformacoesAlteracao(string usuario)
         {
+
+            if (!string.IsNullOrWhiteSpace(usuario) && usuario.Length > 60)
+            {
+                IncluirAnotacaoErro("Nome do usuário da operação não pode ser maior que 60 caracteres");
+            }
+
+            if (!string.IsNullOrWhiteSpace(usuario) && usuario.Length < 10)
+            {
+                IncluirAnotacaoErro("Nome do usuário da operação não pode ser menor que 10 caracteres");
+            }
+
             if (string.IsNullOrWhiteSpace(usuario))
             {
                 IncluirAnotacaoErro("Usuário de alteração não foi informado");

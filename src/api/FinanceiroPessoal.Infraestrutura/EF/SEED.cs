@@ -1,4 +1,5 @@
 ﻿using FinanceiroPessoal.Dominio.Entidades;
+using FinanceiroPessoal.Dominio.Enumeradores;
 
 namespace FinanceiroPessoal.Infraestrutura.EF
 {
@@ -29,6 +30,13 @@ namespace FinanceiroPessoal.Infraestrutura.EF
                 context.Cartoes.Add(cartao);
             }
 
+
+            if (context.Cartoes.Count() == 0)
+            {
+                string validade = $"{DateTime.Now.Month.ToString().PadLeft(2, '0')}/{DateTime.Now.AddYears(1).Year}";
+                var cartao = new CartaoCredito(Guid.Parse("9f00bfdd-0450-46e1-8499-6d8963b6973f"),"WAY", "343543285186412", "123", validade, 10, 5, 100, "ITAU", EnumBandeiraCartao.AmericanExpress, donoCartaoUsuarioID: Guid.Parse("eb0b8c09-e93b-44b3-a68a-4c27bce54b2a"), "sistema");
+                context.Cartoes.Add(cartao);
+            }
             context.SaveChanges();
         }
     }

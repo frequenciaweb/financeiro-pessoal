@@ -6,13 +6,13 @@ namespace FinanceiroPessoal.Teste.Comum
 {
     public abstract class TesteBase
     {
-        private static object Objecto = new object(); 
-        private static FinanceiroPessoalContext _context;
+        private static object Objeto = new object();
+        private static FinanceiroPessoalContext _context = default!;
         protected static FinanceiroPessoalContext Context
         {
             get
             {
-                lock (Objecto)
+                lock (Objeto)
                 {
                     if (_context != null)
                     {
