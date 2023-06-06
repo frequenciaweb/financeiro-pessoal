@@ -1,4 +1,4 @@
-﻿using FinanceiroPessoal.Dominio.Contratos;
+﻿using FinanceiroPessoal.Dominio.Contratos.Repositorios;
 using FinanceiroPessoal.Infraestrutura.EF;
 
 namespace FinanceiroPessoal.Infraestrutura.Repositorios
@@ -36,7 +36,7 @@ namespace FinanceiroPessoal.Infraestrutura.Repositorios
 
         public void Incluir(List<T> objs)
         {
-            Context.Set<T>().AddRange(objs);
+            Context.Set<T>().AddRange(objs);            
         }
 
         public T? Obter(Guid id)

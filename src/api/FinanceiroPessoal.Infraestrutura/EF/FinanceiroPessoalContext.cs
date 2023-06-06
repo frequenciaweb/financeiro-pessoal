@@ -12,6 +12,7 @@ namespace FinanceiroPessoal.Infraestrutura.EF
         public DbSet<FaturaCartao> Faturas { get; set; } = default!;
         public DbSet<Lancamento> Lancamentos { get; set; } = default!;
         public DbSet<Usuario> Usuarios { get; set; } = default!;
+        public DbSet<Acesso> Acessos { get; set; } = default!;
 
 
         public FinanceiroPessoalContext()

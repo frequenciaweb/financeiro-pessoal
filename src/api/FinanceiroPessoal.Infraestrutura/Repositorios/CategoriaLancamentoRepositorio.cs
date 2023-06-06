@@ -1,4 +1,4 @@
-﻿using FinanceiroPessoal.Dominio.Contratos;
+﻿using FinanceiroPessoal.Dominio.Contratos.Repositorios;
 using FinanceiroPessoal.Dominio.Entidades;
 using FinanceiroPessoal.Infraestrutura.EF;
 using FinanceiroPessoal.Infraestrutura.Repositorios;

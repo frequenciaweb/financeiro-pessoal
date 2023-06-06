@@ -1,5 +1,6 @@
 ﻿using FinanceiroPessoal.Dominio.Entidades;
 using FinanceiroPessoal.Dominio.Enumeradores;
+using FinanceiroPessoal.Utilitarios.Util;
 
 namespace FinanceiroPessoal.Infraestrutura.EF
 {
@@ -9,7 +10,7 @@ namespace FinanceiroPessoal.Infraestrutura.EF
         {
             if (context.Usuarios.Count() == 0)
             {
-                context.Usuarios.Add(new Usuario(Guid.Parse("eb0b8c09-e93b-44b3-a68a-4c27bce54b2a"), "Administrador", "administrador@sistema.com", "123456", "migrations"));
+                context.Usuarios.Add(new Usuario(Guid.Parse("eb0b8c09-e93b-44b3-a68a-4c27bce54b2a"), "Administrador", "administrador@sistema.com", Seguranca.HashMd5("123456"), "migrations"));
             }
 
             if (context.Cartoes.Count() == 0)

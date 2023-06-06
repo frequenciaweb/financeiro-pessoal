@@ -1,4 +1,4 @@
-﻿using FinanceiroPessoal.Dominio.Contratos;
+﻿using FinanceiroPessoal.Dominio.Contratos.Repositorios;
 using FinanceiroPessoal.Dominio.Entidades;
 using FinanceiroPessoal.Infraestrutura.EF;
 
@@ -10,9 +10,14 @@ namespace FinanceiroPessoal.Infraestrutura.Repositorios
         {
         }
 
-        public bool Logar(string usuario, string senha)
+        public Usuario? Logar(string usuario, string senha)
         {
-            return Context.Usuarios.Any(x => x.Email == usuario && x.Senha == senha && !x.Deletado); 
+            return Context.Usuarios.FirstOrDefault(x => x.Email == usuario && x.Senha == senha && !x.Deletado); 
+        }
+
+        public void RegistrarAcesso(Guid usuarioID)
+        {
+            Context.Acessos.Add(new Acesso(usuarioID));
         }
 
         public bool TrocarSenha(string senhaAtual, string novaSenha, Guid usuarioID, out string msgErro)

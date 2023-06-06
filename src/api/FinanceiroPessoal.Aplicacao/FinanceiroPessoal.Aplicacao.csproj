@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\FinanceiroPessoal.Dominio\FinanceiroPessoal.Dominio.csproj" />
+    <ProjectReference Include="..\FinanceiroPessoal.Infraestrutura\FinanceiroPessoal.Infraestrutura.Dados.csproj" />
+  </ItemGroup>
+
 </Project>

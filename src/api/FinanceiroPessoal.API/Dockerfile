@@ -8,7 +8,7 @@ EXPOSE 443
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
 COPY ["FinanceiroPessoal.API/FinanceiroPessoal.API.csproj", "FinanceiroPessoal.API/"]
-COPY ["FinanceiroPessoal.Infraestrutura/FinanceiroPessoal.Infraestrutura.csproj", "FinanceiroPessoal.Infraestrutura/"]
+COPY ["FinanceiroPessoal.Infraestrutura/FinanceiroPessoal.Infraestrutura.Dados.csproj", "FinanceiroPessoal.Infraestrutura/"]
 COPY ["FinanceiroPessoal.Dominio/FinanceiroPessoal.Dominio.csproj", "FinanceiroPessoal.Dominio/"]
 RUN dotnet restore "FinanceiroPessoal.API/FinanceiroPessoal.API.csproj"
 COPY . .

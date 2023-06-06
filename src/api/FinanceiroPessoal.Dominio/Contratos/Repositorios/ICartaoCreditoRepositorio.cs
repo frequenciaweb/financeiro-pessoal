@@ -1,7 +1,7 @@
 ﻿using FinanceiroPessoal.Dominio.Entidades;
 using FinanceiroPessoal.Dominio.Enumeradores;
 
-namespace FinanceiroPessoal.Dominio.Contratos
+namespace FinanceiroPessoal.Dominio.Contratos.Repositorios
 {
     public interface ICartaoCreditoRepositorio : IRepositorioBase<CartaoCredito>
     {

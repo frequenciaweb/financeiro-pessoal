@@ -1,4 +1,9 @@
-﻿using FinanceiroPessoal.Infraestrutura.EF;
+﻿using FinanceiroPessoal.Aplicacao.Servicos;
+using FinanceiroPessoal.Dominio.Contratos.Repositorios;
+using FinanceiroPessoal.Dominio.Contratos.Servicos;
+using FinanceiroPessoal.Infraestrutura.Dados.Repositorios;
+using FinanceiroPessoal.Infraestrutura.EF;
+using FinanceiroPessoal.Infraestrutura.Repositorios;
 using Microsoft.EntityFrameworkCore;
 
 namespace FinanceiroPessoal.API
@@ -95,5 +100,18 @@ namespace FinanceiroPessoal.API
                 Console.WriteLine(ex.ToString());
             }
         }
+        public static void RegistrarDependencias(this IServiceCollection services)
+        {
+            services.AddScoped<IUsuarioRepositorio, UsuarioRepositorio>();
+            services.AddScoped<ICategoriaLancamentoRepositorio, CategoriaLancamentoRepositorio>();
+            services.AddScoped<ICartaoCreditoRepositorio, CartaoCreditoRepositorio>();
+            services.AddScoped<IUsuarioServico, UsuarioServico>();
+        }
+
+        public static void MeuMetodoDeExtensao(this IServiceCollection services)
+        {
+
+        }
+
     }
 }

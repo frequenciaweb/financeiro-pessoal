@@ -26,6 +26,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\FinanceiroPessoal.Aplicacao\FinanceiroPessoal.Aplicacao.csproj" />
     <ProjectReference Include="..\FinanceiroPessoal.Infraestrutura\FinanceiroPessoal.Infraestrutura.Dados.csproj" />
   </ItemGroup>
 

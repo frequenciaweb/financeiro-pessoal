@@ -1,4 +1,4 @@
-﻿namespace FinanceiroPessoal.Dominio.Contratos
+﻿namespace FinanceiroPessoal.Dominio.Contratos.Repositorios
 {
     public interface IRepositorioBase<T> where T : class
     {
