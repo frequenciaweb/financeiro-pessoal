@@ -10,6 +10,11 @@ namespace FinanceiroPessoal.Infraestrutura.Repositorios
         {
         }
 
+        public List<Usuario> ListarAtivos()
+        {
+            return Context.Usuarios.Where(x => x.Ativo).ToList();
+        }
+
         public Usuario? Logar(string usuario, string senha)
         {
             return Context.Usuarios.FirstOrDefault(x => x.Email == usuario && x.Senha == senha && !x.Deletado); 

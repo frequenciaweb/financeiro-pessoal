@@ -10,7 +10,19 @@ namespace FinanceiroPessoal.Infraestrutura.EF
         {
             if (context.Usuarios.Count() == 0)
             {
-                context.Usuarios.Add(new Usuario(Guid.Parse("eb0b8c09-e93b-44b3-a68a-4c27bce54b2a"), "Administrador", "administrador@sistema.com", Seguranca.HashMd5("123456"), "migrations"));
+                context.Usuarios.Add(new Usuario(Guid.Parse("eb0b8c09-e93b-44b3-a68a-4c27bce54b2a"),
+                    "Administrador",
+                    "administrador@sistema.com",
+                    Seguranca.HashMd5("123456"), 
+                    "migrations", 
+                    true));
+
+                context.Usuarios.Add(new Usuario(Guid.Parse("153ced42-0f02-11ee-be56-0242ac120002"),
+                 "Convidado",
+                 "convidado@sistema.com",
+                 Seguranca.HashMd5("123456"),
+                 "migrations",
+                 false));
             }
 
             if (context.Cartoes.Count() == 0)

@@ -1,6 +1,9 @@
 ﻿using FinanceiroPessoal.API.Models;
+using FinanceiroPessoal.API.Servico;
+using FinanceiroPessoal.Dominio.Contratos.Repositorios;
 using FinanceiroPessoal.Dominio.Contratos.Servicos;
 using FinanceiroPessoal.Dominio.Entidades;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Net.Mime;
 
@@ -14,9 +17,12 @@ namespace FinanceiroPessoal.API.Controllers
     {
 
         private readonly IUsuarioServico _usuarioServico;
-        public UsuariosController(IUsuarioServico usuarioServico)
+        private readonly IUsuarioRepositorio _usuarioRepositorio;
+        public UsuariosController(IUsuarioServico usuarioServico, 
+            IUsuarioRepositorio usuarioRepositorio)
         {
             _usuarioServico = usuarioServico;
+            _usuarioRepositorio = usuarioRepositorio;
         }
 
         [HttpPost("Logar")]
@@ -30,7 +36,7 @@ namespace FinanceiroPessoal.API.Controllers
            (bool logado, Usuario usuario) = _usuarioServico.Logar(logon.Login, logon.Senha, out string msgErro);
             if (logado)
             {
-                return Ok(new UsuarioLogado(usuario));
+                return Ok(new UsuarioLogado(usuario, TokenServico.Gerar(usuario)));
             }
             else
             {
@@ -38,5 +44,17 @@ namespace FinanceiroPessoal.API.Controllers
             }
             
         }
+
+        [HttpGet("ListarAtivos")]
+        [Consumes(MediaTypeNames.Application.Json)]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<Usuario>))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [Authorize (Roles = "Administrador")]
+        public IActionResult ListarAtivos()
+        {   
+           return Ok(_usuarioRepositorio.ListarAtivos());
+        }
+
     }
 }

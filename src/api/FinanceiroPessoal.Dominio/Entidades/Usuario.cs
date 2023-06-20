@@ -10,20 +10,21 @@ namespace FinanceiroPessoal.Dominio.Entidades
     {
         public Usuario(){}
 
-        public Usuario(Guid id, string nome, string email, string senha, string usuarioInclusao) : base(id, usuarioInclusao)
+        public Usuario(Guid id, string nome, string email, string senha, string usuarioInclusao, bool admin) : base(id, usuarioInclusao)
         {            
-            GerarUsuario(id, nome, email, senha);
+            GerarUsuario(id, nome, email, senha, admin);
         }
-        public Usuario(string nome, string email, string senha, string usuarioInclusao):base(usuarioInclusao) 
+        public Usuario(string nome, string email, string senha, string usuarioInclusao, bool admin):base(usuarioInclusao) 
         {
-            GerarUsuario(Guid.NewGuid(), nome, email, senha);
+            GerarUsuario(Guid.NewGuid(), nome, email, senha, admin);
         }
 
-        private void GerarUsuario(Guid id, string nome, string email, string senha)
+        private void GerarUsuario(Guid id, string nome, string email, string senha, bool admin)
         {           
             Nome = nome;
             Email = email;
             Senha = senha;
+            EhAdmin = admin;
 
             if (!Validacoes.Senha(Senha))
             {
@@ -42,7 +43,11 @@ namespace FinanceiroPessoal.Dominio.Entidades
         public string Email { get; private set; } = default!;
 
         [Column("senha"), MaxLength(255), Required]
-        public string Senha { get; private set; } = default!;       
+        public string Senha { get; private set; } = default!;
+
+        [Column("admin"), Required]
+        public bool EhAdmin { get; private set; } = false;
+
 
         /// <summary>
         /// Metodo responsavel por alterar o valor da senha na entidade de usuário
