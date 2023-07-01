@@ -6,7 +6,7 @@ using FinanceiroPessoal.Utilitarios.Util;
 
 namespace FinanceiroPessoal.Aplicacao.Servicos
 {
-    public class UsuarioServico : ServicoBase, IUsuarioServico
+    public class UsuarioServico : BaseServico, IUsuarioServico
     {
         private readonly IUsuarioRepositorio _usuarioRepositorio;
 

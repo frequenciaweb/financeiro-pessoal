@@ -3,12 +3,12 @@ using FinanceiroPessoal.Infraestrutura.EF;
 
 namespace FinanceiroPessoal.Aplicacao.Servicos
 {
-    public abstract class ServicoBase : IServicoBase
+    public abstract class BaseServico : IBaseServico
     {
 
         private readonly FinanceiroPessoalContext _contexto;
 
-        public ServicoBase(FinanceiroPessoalContext contexto)
+        public BaseServico(FinanceiroPessoalContext contexto)
         {
             _contexto = contexto;
         }

@@ -11,6 +11,11 @@ namespace FinanceiroPessoal.Infraestrutura.Repositorios
         {
         }
 
+        public bool Existe(string numero)
+        {
+            return Context.Cartoes.Any(x => x.Numero == numero);
+        }
+
         public List<CartaoCredito> ObterCartoesVencidos()
         {
             return Context.Cartoes

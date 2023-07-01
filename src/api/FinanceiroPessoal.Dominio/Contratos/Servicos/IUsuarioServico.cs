@@ -2,7 +2,7 @@
 
 namespace FinanceiroPessoal.Dominio.Contratos.Servicos
 {
-    public interface IUsuarioServico
+    public interface IUsuarioServico : IBaseServico
     {
         (bool, Usuario) Logar(string usuario, string senha, out string msgErro);        
     }

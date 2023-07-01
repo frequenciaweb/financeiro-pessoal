@@ -1,5 +1,6 @@
 ﻿using FinanceiroPessoal.Dominio.Enumeradores;
 using FinanceiroPessoal.Dominio.Util;
+using FinanceiroPessoal.Dominio.ViewModels.Entrada;
 using FinanceiroPessoal.Utilitarios.Util;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -11,7 +12,7 @@ namespace FinanceiroPessoal.Dominio.Entidades
     {
         public CartaoCredito()
         {
-            
+
         }
 
         private void Registro(string nome, string numero, string? cvv, string validade, int vencimento, int diaMelhorCompra, decimal limite, string banco, EnumBandeiraCartao bandeira, Guid donoCartaoUsuarioID)
@@ -28,11 +29,11 @@ namespace FinanceiroPessoal.Dominio.Entidades
             UsuarioID = donoCartaoUsuarioID;
         }
 
-        public CartaoCredito(Guid id, string nome, string numero, string? cvv, string validade, int vencimento, int diaMelhorCompra, decimal limite, string banco, EnumBandeiraCartao bandeira,Guid donoCartaoUsuarioID, string usuarioInclusao):base(id,usuarioInclusao)
+        public CartaoCredito(Guid id, string nome, string numero, string? cvv, string validade, int vencimento, int diaMelhorCompra, decimal limite, string banco, EnumBandeiraCartao bandeira, Guid donoCartaoUsuarioID, string usuarioInclusao) : base(id, usuarioInclusao)
         {
-            Registro( nome,  numero,   cvv,  validade, vencimento,  diaMelhorCompra,  limite,  banco,  bandeira,  donoCartaoUsuarioID);
+            Registro(nome, numero, cvv, validade, vencimento, diaMelhorCompra, limite, banco, bandeira, donoCartaoUsuarioID);
         }
-        public CartaoCredito(string nome, string numero, string? cvv, string validade, int vencimento, int diaMelhorCompra, decimal limite, string banco, EnumBandeiraCartao bandeira,Guid donoCartaoUsuarioID, string usuarioInclusao):base(usuarioInclusao)
+        public CartaoCredito(string nome, string numero, string? cvv, string validade, int vencimento, int diaMelhorCompra, decimal limite, string banco, EnumBandeiraCartao bandeira, Guid donoCartaoUsuarioID, string usuarioInclusao) : base(usuarioInclusao)
         {
             Registro(nome, numero, cvv, validade, vencimento, diaMelhorCompra, limite, banco, bandeira, donoCartaoUsuarioID);
         }
@@ -43,15 +44,15 @@ namespace FinanceiroPessoal.Dominio.Entidades
         [Column("nome"), MaxLength(20), Required]
         public string Nome { get; private set; } = default!;
 
-        public void Alterar(string nome, 
+        public void Alterar(string nome,
             string numero,
             string cvv,
             string validade,
-            int vencimento, 
+            int vencimento,
             int diaMelhorCompra,
             EnumBandeiraCartao bandeira,
             decimal limite,
-            string banco, 
+            string banco,
             Guid donoCartaoUsuarioID,
             string usuarioAlteracao)
         {
@@ -62,7 +63,7 @@ namespace FinanceiroPessoal.Dominio.Entidades
             Vencimento = vencimento;
             DiaMelhorCompra = diaMelhorCompra;
             Banco = banco.Trim().ToLower();
-            Bandeira = bandeira;            
+            Bandeira = bandeira;
             Limite = limite;
             UsuarioID = donoCartaoUsuarioID;
             IncluirInformacoesAlteracao(usuarioAlteracao);
@@ -94,7 +95,7 @@ namespace FinanceiroPessoal.Dominio.Entidades
         ///  Melhor dia de compra
         /// </summary>
         [Column("melhor_dia")]
-        public int DiaMelhorCompra { get;private set; }
+        public int DiaMelhorCompra { get; private set; }
 
         /// <summary>
         /// Valor total do limite
@@ -105,7 +106,7 @@ namespace FinanceiroPessoal.Dominio.Entidades
         /// <summary>
         /// Nome do banco
         /// </summary>
-        [Column("banco"),MaxLength(30),Required]
+        [Column("banco"), MaxLength(30), Required]
         public string Banco { get; private set; } = default!;
 
         /// <summary>
@@ -129,7 +130,7 @@ namespace FinanceiroPessoal.Dominio.Entidades
 
         public Usuario Usuario { get; private set; } = default!;
 
-        private List<FaturaCartao> _faturas  = new List<FaturaCartao>();
+        private List<FaturaCartao> _faturas = new List<FaturaCartao>();
         public IReadOnlyList<FaturaCartao> Faturas => _faturas;
 
         public override bool Valido()
@@ -160,7 +161,7 @@ namespace FinanceiroPessoal.Dominio.Entidades
                 IncluirAnotacaoErro("Cartão inválido");
             }
 
-            if (Vencimento <= 0 || Vencimento > 31 ) 
+            if (Vencimento <= 0 || Vencimento > 31)
             {
                 IncluirAnotacaoErro("Vencimento inválido");
             }
@@ -191,6 +192,25 @@ namespace FinanceiroPessoal.Dominio.Entidades
             }
 
             return base.Valido();
+        }
+
+        public static implicit operator ViewModels.Saida.CartaoCredito(CartaoCredito cartaoCredito)
+        {
+            return new ViewModels.Saida.CartaoCredito
+            {
+                Banco = cartaoCredito.Banco,
+                Bandeira = cartaoCredito.Bandeira,
+                Cvv = cartaoCredito.CVV,
+                DiaMelhorCompra = cartaoCredito.DiaMelhorCompra,
+                DonoCartaoUsuarioID = cartaoCredito.UsuarioID,
+                ID = cartaoCredito.ID,
+                Limite = cartaoCredito.Limite,
+                Nome = cartaoCredito.Nome,
+                Numero = cartaoCredito.Numero,
+                UsuarioInclusao = cartaoCredito.UsuarioInclusao,
+                Validade = cartaoCredito.Validade,
+                Vencimento = cartaoCredito.Vencimento,
+            };
         }
     }
 }

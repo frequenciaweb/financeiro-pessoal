@@ -1,6 +1,6 @@
 ﻿namespace FinanceiroPessoal.Dominio.Contratos.Servicos
 {
-    public interface IServicoBase
+    public interface IBaseServico
     {
         int Commit();
     }

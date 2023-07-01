@@ -106,12 +106,7 @@ namespace FinanceiroPessoal.API
             services.AddScoped<ICategoriaLancamentoRepositorio, CategoriaLancamentoRepositorio>();
             services.AddScoped<ICartaoCreditoRepositorio, CartaoCreditoRepositorio>();
             services.AddScoped<IUsuarioServico, UsuarioServico>();
+            services.AddScoped<ICartaoCreditoServico, CartaoCreditoServico>();
         }
-
-        public static void MeuMetodoDeExtensao(this IServiceCollection services)
-        {
-
-        }
-
     }
 }

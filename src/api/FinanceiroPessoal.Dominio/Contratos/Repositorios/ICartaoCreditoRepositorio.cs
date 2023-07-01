@@ -10,5 +10,6 @@ namespace FinanceiroPessoal.Dominio.Contratos.Repositorios
         List<CartaoCredito> ObterPorBandeira(EnumBandeiraCartao bandeira);
         List<CartaoCredito> ObterCartoesVencidos();
         List<CartaoCredito> ObterPorMelhorData(int numeroDoDia);
+        bool Existe(string numero);
     }
 }
