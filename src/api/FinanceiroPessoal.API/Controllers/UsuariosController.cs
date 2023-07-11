@@ -13,6 +13,7 @@ namespace FinanceiroPessoal.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class UsuariosController : ControllerBase
     {
 
@@ -26,6 +27,7 @@ namespace FinanceiroPessoal.API.Controllers
         }
 
         [HttpPost("Logar")]
+        [AllowAnonymous]
         [Consumes(MediaTypeNames.Application.Json)]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(UsuarioLogado))]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]

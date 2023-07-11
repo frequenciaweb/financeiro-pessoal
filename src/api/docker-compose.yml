@@ -17,6 +17,9 @@ services:
     build:
       context: .
       dockerfile: FinanceiroPessoal.API/Dockerfile 
+    ports:
+       - 8002:80
+       - 8003:443  
     restart: always
     environment:
        connection_string: "User ID=postgres;Password=&Fin@nceiroPesso@l2023;Host=bd_financeiro_pessoal;Port=5432;Database=financeiro_pessoal;Pooling=true;"
