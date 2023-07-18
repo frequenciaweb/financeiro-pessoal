@@ -7,11 +7,18 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LoginComponent } from './paginas/login/login.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { HomeComponent } from './paginas/home/home.component';
+import { GuardaRotaService } from './servicos/guarda.rota.service';
+import { SobreComponent } from './paginas/sobre/sobre.component';
+import { PoliticaPrivacidadeComponent } from './paginas/politica-privacidade/politica-privacidade.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    HomeComponent,
+    SobreComponent,
+    PoliticaPrivacidadeComponent
   ],
   imports: [
     BrowserModule,
@@ -20,7 +27,7 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [GuardaRotaService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
