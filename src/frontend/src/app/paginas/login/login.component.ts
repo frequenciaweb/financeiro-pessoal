@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { AlertService } from 'src/app/util/alert/alert.service';
 import { environment } from 'src/environments/environment.development';
 
 
@@ -13,7 +14,8 @@ export class LoginComponent {
 
 public logon = {login: "", senha: ""};
 
-constructor(private http : HttpClient, private router: Router){}
+constructor(private http : HttpClient, private router: Router,
+    public alertService: AlertService){}
 
 logar(){
   this.http.post(`${environment.apiUrl}/Usuarios/Logar`, this.logon)
@@ -24,7 +26,8 @@ logar(){
   },
   (except) => {
     console.log(except)
-     alert(except.error);
+     //alert(except.error);
+     this.alertService.error(except.error);
   });
   }
 }

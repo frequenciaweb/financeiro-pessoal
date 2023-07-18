@@ -11,6 +11,7 @@ import { HomeComponent } from './paginas/home/home.component';
 import { GuardaRotaService } from './servicos/guarda.rota.service';
 import { SobreComponent } from './paginas/sobre/sobre.component';
 import { PoliticaPrivacidadeComponent } from './paginas/politica-privacidade/politica-privacidade.component';
+import { AlertModule } from './util/alert/alert.module';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { PoliticaPrivacidadeComponent } from './paginas/politica-privacidade/pol
     AppRoutingModule,
     NgbModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    AlertModule
   ],
   providers: [GuardaRotaService],
   bootstrap: [AppComponent]
