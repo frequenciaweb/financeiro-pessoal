@@ -6,12 +6,15 @@ import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LoginComponent } from './paginas/login/login.component';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './paginas/home/home.component';
 import { GuardaRotaService } from './servicos/guarda.rota.service';
 import { SobreComponent } from './paginas/sobre/sobre.component';
 import { PoliticaPrivacidadeComponent } from './paginas/politica-privacidade/politica-privacidade.component';
 import { AlertModule } from './util/alert/alert.module';
+import { ErrorInterceptor } from './util/error-interceptor';
+import { ListarUsuariosAtivosComponent } from './paginas/listar-usuarios-ativos/listar-usuarios-ativos.component';
+import { TokenInterceptor } from './util/token-interceptor';
 
 @NgModule({
   declarations: [
@@ -19,7 +22,8 @@ import { AlertModule } from './util/alert/alert.module';
     LoginComponent,
     HomeComponent,
     SobreComponent,
-    PoliticaPrivacidadeComponent
+    PoliticaPrivacidadeComponent,
+    ListarUsuariosAtivosComponent
   ],
   imports: [
     BrowserModule,
@@ -29,7 +33,10 @@ import { AlertModule } from './util/alert/alert.module';
     HttpClientModule,
     AlertModule
   ],
-  providers: [GuardaRotaService],
+  providers: [
+    GuardaRotaService,
+    {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi:  true},
+    {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi:  true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

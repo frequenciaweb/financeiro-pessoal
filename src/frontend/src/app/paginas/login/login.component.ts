@@ -23,11 +23,6 @@ logar(){
     console.log(resultado)
     localStorage.setItem("UsuarioLogado", JSON.stringify(resultado));
     this.router.navigate(["/home"]);
-  },
-  (except) => {
-    console.log(except)
-     //alert(except.error);
-     this.alertService.error(except.error);
   });
   }
 }
