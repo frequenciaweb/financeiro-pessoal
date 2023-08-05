@@ -21,7 +21,7 @@ namespace FinanceiroPessoal.Aplicacao.Servicos
 
             if (string.IsNullOrEmpty(login) || string.IsNullOrEmpty(senha))
             {
-                msgErro = "Informe os dados para login";
+                msgErro = "Informe os dados para login";                
                 return (false, null);
             }
 

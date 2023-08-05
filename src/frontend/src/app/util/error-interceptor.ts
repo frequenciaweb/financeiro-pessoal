@@ -29,9 +29,15 @@ export class ErrorInterceptor implements HttpInterceptor {
           this.alertService.error("Você não possuei permissão para acessar este recurso!");
        }
 
-        if (error.status == 500 || error.status == 0) {
+        if (error.status == 0) {
           this.alertService.error("Falha ao se comunicar com o servidor, por favor tente novamente mais tarde!");
         }
+
+       if (error.status == 500){
+         this.alertService.error("Desculpe, houve um problema na sua requisição, por favor tente novamente mais tarde");
+       }
+
+
       }
       return throwError(error);
     }))

@@ -2,9 +2,10 @@ using FinanceiroPessoal.API;
 using FinanceiroPessoal.API.Servico;
 using FinanceiroPessoal.Utilitarios.Util;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using System.Net;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -73,6 +74,22 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseExceptionHandler(appError =>
+{
+    appError.Run(async context =>
+    {
+        context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+        context.Response.ContentType = "application/json";
+        var contextFeature = context.Features.Get<IExceptionHandlerFeature>();
+        if (contextFeature != null)
+        {
+            Log.GravarExcessao(contextFeature.Error);
+            await context.Response.WriteAsync("Desculpe, houve um problema na sua requisição, por favor tente novamente mais tarde");
+        }
+    });
+});
+
 
 app.UseCors(x => x
                     .AllowAnyOrigin()

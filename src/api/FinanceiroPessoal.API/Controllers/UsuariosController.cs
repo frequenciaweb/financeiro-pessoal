@@ -19,7 +19,7 @@ namespace FinanceiroPessoal.API.Controllers
 
         private readonly IUsuarioServico _usuarioServico;
         private readonly IUsuarioRepositorio _usuarioRepositorio;
-        public UsuariosController(IUsuarioServico usuarioServico, 
+        public UsuariosController(IUsuarioServico usuarioServico,
             IUsuarioRepositorio usuarioRepositorio)
         {
             _usuarioServico = usuarioServico;
@@ -32,10 +32,10 @@ namespace FinanceiroPessoal.API.Controllers
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(UsuarioLogado))]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public IActionResult Logar(Logon logon) 
-        {
+        public IActionResult Logar(Logon logon)
+        {            
 
-           (bool logado, Usuario usuario) = _usuarioServico.Logar(logon.Login, logon.Senha, out string msgErro);
+            (bool logado, Usuario usuario) = _usuarioServico.Logar(logon.Login, logon.Senha, out string msgErro);
             if (logado)
             {
                 return Ok(new UsuarioLogado(usuario, TokenServico.Gerar(usuario)));
@@ -44,7 +44,9 @@ namespace FinanceiroPessoal.API.Controllers
             {
                 return BadRequest(msgErro);
             }
-            
+
+
+
         }
 
         [HttpGet("ListarAtivos")]
@@ -52,10 +54,10 @@ namespace FinanceiroPessoal.API.Controllers
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<Usuario>))]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        [Authorize (Roles = "Administrador")]
+        [Authorize(Roles = "Administrador")]
         public IActionResult ListarAtivos()
-        {   
-           return Ok(_usuarioRepositorio.ListarAtivos());
+        {
+            return Ok(_usuarioRepositorio.ListarAtivos());
         }
 
     }
