@@ -10,7 +10,9 @@ services:
     environment:
         POSTGRES_USER: "postgres"
         POSTGRES_PASSWORD: "&Fin@nceiroPesso@l2023"
-        POSTGRES_DB: "financeiro_pessoal"
+        POSTGRES_DB: "financeiro_pessoal" 
+    volumes:
+        - D:\DOCKER-VOLUMES\financeiro-pessoal\dados:/var/lib/postgresql/data
       
   financeiropessoal.api:
     image: ${DOCKER_REGISTRY-}financeiropessoalapi
@@ -24,4 +26,15 @@ services:
     environment:
        connection_string: "User ID=postgres;Password=&Fin@nceiroPesso@l2023;Host=bd_financeiro_pessoal;Port=5432;Database=financeiro_pessoal;Pooling=true;"
        DROP_DATA_BASE: 1
-       POPULAR_DATA_BASE: 1   
+       POPULAR_DATA_BASE: 1
+
+  sgdb: 
+    image: dpage/pgadmin4
+    hostname: sgdb_pgadmin4
+    environment:
+        PGADMIN_DEFAULT_EMAIL: "admin@teste.com.br"
+        PGADMIN_DEFAULT_PASSWORD: "&Fin@nceiroPesso@l2023"
+    ports:
+        - 8085:80 
+    volumes:
+        - D:\DOCKER-VOLUMES\financeiro-pessoal\pgadmin:/var/lib/pgadmin

@@ -12,7 +12,7 @@ namespace FinanceiroPessoal.Infraestrutura.EF
             {
                 context.Usuarios.Add(new Usuario(Guid.Parse("eb0b8c09-e93b-44b3-a68a-4c27bce54b2a"),
                     "Administrador",
-                    "administrador@sistema.com",
+                    "administrador@sistema.com.br",
                     Seguranca.HashMd5("123456"), 
                     "migrations", 
                     true));

@@ -3,6 +3,7 @@ using FinanceiroPessoal.API.Servico;
 using FinanceiroPessoal.Dominio.Contratos.Repositorios;
 using FinanceiroPessoal.Dominio.Contratos.Servicos;
 using FinanceiroPessoal.Dominio.Entidades;
+using FinanceiroPessoal.Dominio.ViewModel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Net.Mime;
@@ -26,6 +27,29 @@ namespace FinanceiroPessoal.API.Controllers
             _usuarioRepositorio = usuarioRepositorio;
         }
 
+        [HttpPost("Incluir")]
+        [Consumes(MediaTypeNames.Application.Json)]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(UsuarioIncluido))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public IActionResult Incluir(UsuarioIncluir usuario)
+        {
+         
+            Usuario incluir = usuario;
+            incluir.IncluirInformacoesInclusao(User.Identity.Name);
+
+            (bool sucesso, Usuario usuarioIncluido,string mensagem) =  _usuarioServico.Incluir(incluir);
+            if (sucesso)
+            {
+                return Ok(usuarioIncluido);
+            }
+            else
+            {
+                return BadRequest(mensagem);
+            }            
+        }
+
+
         [HttpPost("Logar")]
         [AllowAnonymous]
         [Consumes(MediaTypeNames.Application.Json)]
@@ -44,9 +68,6 @@ namespace FinanceiroPessoal.API.Controllers
             {
                 return BadRequest(msgErro);
             }
-
-
-
         }
 
         [HttpGet("ListarAtivos")]

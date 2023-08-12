@@ -38,6 +38,11 @@ namespace FinanceiroPessoal.Dominio.Util
             return string.Join(",", _erros);
         }
 
+        public void LimparMensagensErro()
+        {
+            _erros.Clear();
+        }
+
         /// <summary>
         /// Inclui uma anotação de erro
         /// </summary>

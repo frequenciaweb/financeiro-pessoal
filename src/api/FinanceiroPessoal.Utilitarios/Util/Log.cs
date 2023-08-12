@@ -31,7 +31,7 @@ namespace FinanceiroPessoal.Utilitarios.Util
                     Directory.CreateDirectory(caminho);
                 }
 
-                using StreamWriter valor = new StreamWriter(caminho+ nome, true);
+                using StreamWriter valor = new StreamWriter(caminho+Path.DirectorySeparatorChar+ nome, true);
 
                 string mensagem = ObterInnerExceptions(exception);
 

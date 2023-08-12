@@ -85,6 +85,7 @@ namespace FinanceiroPessoal.Dominio.Entidades
 
         public override bool Valido()
         {
+            LimparMensagensErro();
 
             if (string.IsNullOrEmpty(Nome))
             {

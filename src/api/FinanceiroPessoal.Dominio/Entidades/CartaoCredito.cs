@@ -136,7 +136,7 @@ namespace FinanceiroPessoal.Dominio.Entidades
         {
             if (string.IsNullOrEmpty(Nome))
             {
-                IncluirAnotacaoErro("Nome deve ser preenchido");
+                IncluirAnotacaoErro("Nome deve ser preenchido");                
             }
 
             if (Nome?.Length < 3)

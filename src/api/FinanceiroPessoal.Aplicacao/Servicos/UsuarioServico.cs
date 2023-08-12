@@ -15,6 +15,29 @@ namespace FinanceiroPessoal.Aplicacao.Servicos
             _usuarioRepositorio = usuarioRepositorio;
         }
 
+        public (bool, Usuario, string) Incluir(Usuario usuario)
+        {
+            if (usuario == null)
+            {
+                return (false, null, "Informe os campos obrigatórios");
+            }
+
+            if (usuario.Valido())
+            {
+                
+                _usuarioRepositorio.Incluir(usuario);
+                Commit();
+
+                usuario = _usuarioRepositorio.Obter(usuario.ID);
+
+                return (true, usuario, "Usuário incluido com sucesso");
+            }
+            else
+            {
+                return (false, null, usuario.LerAnotacoesErro());
+            }
+        }
+
         public (bool, Usuario?) Logar(string login, string senha, out string msgErro)
         {
             msgErro = string.Empty;

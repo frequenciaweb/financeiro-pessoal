@@ -143,6 +143,29 @@ namespace FinanceiroPessoal.Dominio.Util
             }
         }
 
+        public void IncluirInformacoesInclusao(string usuario)
+        {
+
+            if (!string.IsNullOrWhiteSpace(usuario) && usuario.Length > 60)
+            {
+                IncluirAnotacaoErro("Nome do usuário da operação não pode ser maior que 60 caracteres");
+            }
+
+            if (!string.IsNullOrWhiteSpace(usuario) && usuario.Length < 10)
+            {
+                IncluirAnotacaoErro("Nome do usuário da operação não pode ser menor que 10 caracteres");
+            }
+
+            if (string.IsNullOrWhiteSpace(usuario))
+            {
+                IncluirAnotacaoErro("Usuário de alteração não foi informado");
+            }
+            else
+            {
+                UsuarioInclusao = usuario;
+                CriadoEm = DateTime.Now;
+            }
+        }
         public void DeletarRegistroLogico()
         {
             Deletado = true;
