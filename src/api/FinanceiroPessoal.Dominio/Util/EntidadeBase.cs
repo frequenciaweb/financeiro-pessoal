@@ -143,7 +143,7 @@ namespace FinanceiroPessoal.Dominio.Util
             }
         }
 
-        public void IncluirInformacoesInclusao(string usuario)
+        public void IncluirInformacoesUsuarioInclusao(string usuario)
         {
 
             if (!string.IsNullOrWhiteSpace(usuario) && usuario.Length > 60)

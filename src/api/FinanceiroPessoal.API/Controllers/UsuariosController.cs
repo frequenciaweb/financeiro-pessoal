@@ -36,12 +36,12 @@ namespace FinanceiroPessoal.API.Controllers
         {
          
             Usuario incluir = usuario;
-            incluir.IncluirInformacoesInclusao(User.Identity.Name);
+            incluir.IncluirInformacoesUsuarioInclusao(User.Identity.Name);
 
             (bool sucesso, Usuario usuarioIncluido,string mensagem) =  _usuarioServico.Incluir(incluir);
             if (sucesso)
             {
-                return Ok(usuarioIncluido);
+                return Ok(UsuarioIncluido.MapearEntidadeUsuario(usuarioIncluido));
             }
             else
             {

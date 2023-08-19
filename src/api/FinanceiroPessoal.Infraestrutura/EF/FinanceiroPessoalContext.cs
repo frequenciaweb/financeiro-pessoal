@@ -50,6 +50,6 @@ namespace FinanceiroPessoal.Infraestrutura.EF
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
          
-        }
+        }       
     }
 }

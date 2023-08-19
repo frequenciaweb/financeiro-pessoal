@@ -10,6 +10,11 @@ namespace FinanceiroPessoal.Infraestrutura.Repositorios
         {
         }
 
+        public bool ExistePorEmail(string email)
+        {
+           return Context.Usuarios.Any(a => a.Email == email);  
+        }
+
         public List<Usuario> ListarAtivos()
         {
             return Context.Usuarios.Where(x => x.Ativo).ToList();

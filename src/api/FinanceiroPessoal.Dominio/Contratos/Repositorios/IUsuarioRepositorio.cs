@@ -8,5 +8,6 @@ namespace FinanceiroPessoal.Dominio.Contratos.Repositorios
         bool TrocarSenha(string senhaAtual, string novaSenha, Guid usuarioID, out string msgErro);
         void RegistrarAcesso(Guid usuarioID);
         List<Usuario> ListarAtivos();
+        bool ExistePorEmail(string email);
     }
 }

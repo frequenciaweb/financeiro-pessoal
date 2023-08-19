@@ -12,11 +12,12 @@ namespace FinanceiroPessoal.API.Models
 
         public static implicit operator Usuario(UsuarioIncluir incluir)
         {
-            return new Usuario(incluir.Nome.ToLower(),
-                incluir.Email.ToLower(),
+            return new Usuario(incluir.Nome.Trim().ToLower(),
+                incluir.Email.Trim().ToLower(),
                 Seguranca.HashMd5(incluir.Senha),
-                "",
-                incluir.EhAdmin);            
+                usuarioInclusao: "",
+                incluir.EhAdmin);
         }
+
     }
 }

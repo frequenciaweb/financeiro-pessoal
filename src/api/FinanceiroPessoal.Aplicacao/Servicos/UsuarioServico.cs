@@ -2,6 +2,7 @@
 using FinanceiroPessoal.Dominio.Contratos.Servicos;
 using FinanceiroPessoal.Dominio.Entidades;
 using FinanceiroPessoal.Infraestrutura.EF;
+using FinanceiroPessoal.Infraestrutura.Repositorios;
 using FinanceiroPessoal.Utilitarios.Util;
 
 namespace FinanceiroPessoal.Aplicacao.Servicos
@@ -24,7 +25,13 @@ namespace FinanceiroPessoal.Aplicacao.Servicos
 
             if (usuario.Valido())
             {
-                
+                if (_usuarioRepositorio.ExistePorEmail(usuario.Email))
+                {                    
+                    return (false, null, "Usuário já cadastrado no sistema");
+                }
+
+
+
                 _usuarioRepositorio.Incluir(usuario);
                 Commit();
 
