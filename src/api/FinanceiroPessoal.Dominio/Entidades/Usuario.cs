@@ -87,6 +87,8 @@ namespace FinanceiroPessoal.Dominio.Entidades
         {
             LimparMensagensErro();
 
+            ValidarUsuarioInclusao();
+
             if (string.IsNullOrEmpty(Nome))
             {
                 IncluirAnotacaoErro("Nome de usuário deve ser preenchido");

@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using FinanceiroPessoal.Dominio.Entidades;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FinanceiroPessoal.Dominio.Util
@@ -143,28 +144,37 @@ namespace FinanceiroPessoal.Dominio.Util
             }
         }
 
-        public void IncluirInformacoesUsuarioInclusao(string usuario)
+        public bool ValidarUsuarioInclusao()
         {
-
-            if (!string.IsNullOrWhiteSpace(usuario) && usuario.Length > 60)
+            if (!string.IsNullOrWhiteSpace(UsuarioInclusao) && UsuarioInclusao.Length > 60)
             {
                 IncluirAnotacaoErro("Nome do usuário da operação não pode ser maior que 60 caracteres");
+                return false;
             }
 
-            if (!string.IsNullOrWhiteSpace(usuario) && usuario.Length < 10)
+            if (!string.IsNullOrWhiteSpace(UsuarioInclusao) && UsuarioInclusao.Length < 10)
             {
                 IncluirAnotacaoErro("Nome do usuário da operação não pode ser menor que 10 caracteres");
+                return false;
             }
 
-            if (string.IsNullOrWhiteSpace(usuario))
+            if (string.IsNullOrWhiteSpace(UsuarioInclusao))
             {
-                IncluirAnotacaoErro("Usuário de alteração não foi informado");
+                IncluirAnotacaoErro("Usuário de inclusão não foi informado");
+                return false;
             }
-            else
-            {
-                UsuarioInclusao = usuario;
-                CriadoEm = DateTime.Now;
-            }
+
+            return true;
+
+        }
+
+        public void IncluirInformacoesUsuarioInclusao(string usuario)
+        {   
+            UsuarioInclusao = usuario;
+            CriadoEm = DateTime.Now;
+
+            ValidarUsuarioInclusao();
+
         }
         public void DeletarRegistroLogico()
         {

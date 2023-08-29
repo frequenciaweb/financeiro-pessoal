@@ -15,6 +15,7 @@ import { AlertModule } from './util/alert/alert.module';
 import { ErrorInterceptor } from './util/error-interceptor';
 import { ListarUsuariosAtivosComponent } from './paginas/listar-usuarios-ativos/listar-usuarios-ativos.component';
 import { TokenInterceptor } from './util/token-interceptor';
+import { UsuarioIncluirComponent } from './paginas/usuario-incluir/usuario-incluir.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { TokenInterceptor } from './util/token-interceptor';
     HomeComponent,
     SobreComponent,
     PoliticaPrivacidadeComponent,
-    ListarUsuariosAtivosComponent
+    ListarUsuariosAtivosComponent,
+    UsuarioIncluirComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +33,8 @@ import { TokenInterceptor } from './util/token-interceptor';
     NgbModule,
     FormsModule,
     HttpClientModule,
-    AlertModule
+    AlertModule,
+    FormsModule
   ],
   providers: [
     GuardaRotaService,

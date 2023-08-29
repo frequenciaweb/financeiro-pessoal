@@ -49,6 +49,30 @@ namespace FinanceiroPessoal.API.Controllers
             }            
         }
 
+        [HttpPost("AutoCadastro")]
+        [Consumes(MediaTypeNames.Application.Json)]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(UsuarioIncluido))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [AllowAnonymous]
+        public IActionResult AutoCadastro(UsuarioIncluir usuario)
+        {
+
+            Usuario incluir = usuario;
+            usuario.EhAdmin = false;
+            incluir.IncluirInformacoesUsuarioInclusao("AUTO CADASTRO");
+
+            (bool sucesso, Usuario usuarioIncluido, string mensagem) = _usuarioServico.Incluir(incluir);
+            if (sucesso)
+            {
+                return Ok(UsuarioIncluido.MapearEntidadeUsuario(usuarioIncluido));
+            }
+            else
+            {
+                return BadRequest(mensagem);
+            }
+        }
+
 
         [HttpPost("Logar")]
         [AllowAnonymous]
