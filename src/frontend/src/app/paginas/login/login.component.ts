@@ -23,6 +23,10 @@ logar(){
     console.log(resultado)
     localStorage.setItem("UsuarioLogado", JSON.stringify(resultado));
     this.router.navigate(["/home"]);
+  },(error) =>
+  {
+    console.log(error);
+    this.alertService.error(error.error, {id: 'mensagens-erro-login'});
   });
   }
 }

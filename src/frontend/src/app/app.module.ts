@@ -16,6 +16,7 @@ import { ErrorInterceptor } from './util/error-interceptor';
 import { ListarUsuariosAtivosComponent } from './paginas/listar-usuarios-ativos/listar-usuarios-ativos.component';
 import { TokenInterceptor } from './util/token-interceptor';
 import { UsuarioIncluirComponent } from './paginas/usuario-incluir/usuario-incluir.component';
+import { DashboardComponent } from './paginas/dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { UsuarioIncluirComponent } from './paginas/usuario-incluir/usuario-inclu
     SobreComponent,
     PoliticaPrivacidadeComponent,
     ListarUsuariosAtivosComponent,
-    UsuarioIncluirComponent
+    UsuarioIncluirComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,

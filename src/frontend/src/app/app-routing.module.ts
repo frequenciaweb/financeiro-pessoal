@@ -7,6 +7,7 @@ import { SobreComponent } from './paginas/sobre/sobre.component';
 import { PoliticaPrivacidadeComponent } from './paginas/politica-privacidade/politica-privacidade.component';
 import { ListarUsuariosAtivosComponent } from './paginas/listar-usuarios-ativos/listar-usuarios-ativos.component';
 import { UsuarioIncluirComponent } from './paginas/usuario-incluir/usuario-incluir.component';
+import { DashboardComponent } from './paginas/dashboard/dashboard.component';
 
 const routes: Routes = [
   {path: "login",component: LoginComponent},
@@ -14,7 +15,8 @@ const routes: Routes = [
   {path: "sobre", component: SobreComponent},
   {path: "politica", component: PoliticaPrivacidadeComponent},
   {path: "listar-usuarios", component: ListarUsuariosAtivosComponent, canActivate: [GuardaRotaService]},
-  {path: "cadastre-se", component: UsuarioIncluirComponent}
+  {path: "cadastre-se", component: UsuarioIncluirComponent},
+  {path: "dashboard", component: DashboardComponent,  canActivate: [GuardaRotaService]}
 ];
 
 @NgModule({
