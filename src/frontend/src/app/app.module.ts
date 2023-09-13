@@ -17,6 +17,10 @@ import { ListarUsuariosAtivosComponent } from './paginas/listar-usuarios-ativos/
 import { TokenInterceptor } from './util/token-interceptor';
 import { UsuarioIncluirComponent } from './paginas/usuario-incluir/usuario-incluir.component';
 import { DashboardComponent } from './paginas/dashboard/dashboard.component';
+import { MenuLateralComponent } from './estrutura/menu-lateral/menu-lateral.component';
+import { RodapeComponent } from './estrutura/rodape/rodape.component';
+import { MenuSuperiorComponent } from './estrutura/menu-superior/menu-superior.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -27,7 +31,10 @@ import { DashboardComponent } from './paginas/dashboard/dashboard.component';
     PoliticaPrivacidadeComponent,
     ListarUsuariosAtivosComponent,
     UsuarioIncluirComponent,
-    DashboardComponent
+    DashboardComponent,
+    MenuLateralComponent,
+    RodapeComponent,
+    MenuSuperiorComponent
   ],
   imports: [
     BrowserModule,
@@ -36,7 +43,8 @@ import { DashboardComponent } from './paginas/dashboard/dashboard.component';
     FormsModule,
     HttpClientModule,
     AlertModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule
   ],
   providers: [
     GuardaRotaService,
