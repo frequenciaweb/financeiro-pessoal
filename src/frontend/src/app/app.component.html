@@ -28,6 +28,21 @@
     <div class="content">
       <div class="container-fluid">
         <alert></alert>
+        <br />
+        <button mat-fab extended>
+          <mat-icon>home</mat-icon>
+          Home
+        </button>
+        <br />
+
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+  <strong>Holy guacamole!</strong> You should check in on some of those fields below.
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+        <mat-slide-toggle>Toggle me!</mat-slide-toggle>
         <router-outlet></router-outlet>
       </div><!-- /.container-fluid -->
     </div>

@@ -21,6 +21,10 @@ import { MenuLateralComponent } from './estrutura/menu-lateral/menu-lateral.comp
 import { RodapeComponent } from './estrutura/rodape/rodape.component';
 import { MenuSuperiorComponent } from './estrutura/menu-superior/menu-superior.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatDividerModule } from '@angular/material/divider';
 
 @NgModule({
   declarations: [
@@ -44,8 +48,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     HttpClientModule,
     AlertModule,
     FormsModule,
-    BrowserAnimationsModule
-  ],
+    BrowserAnimationsModule,
+    MatSlideToggleModule,
+    MatButtonModule,
+    MatIconModule,
+    MatDividerModule
+    ],
   providers: [
     GuardaRotaService,
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi:  true},
